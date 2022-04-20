@@ -1,0 +1,34 @@
+---
+title: "Notes from Introduction to Genomic Technologies"
+author: "Jorge Luis Gómez"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    fig_height: 8
+    fig_width: 13
+    number_section: yes
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+  pdf_document:
+    toc: yes
+  word_document:
+    toc: yes
+---
+
+# Why Genomics?
+
+Genomics is the study of the genomes within the living organisms. Everyone and every living thing has a genome, but we're very similar even though we are not so different genomically speaking. Many traits of the living organisms are determined by the genomes, since our development is coded by the genome itself. The same code can make all the cells within a single genome, meaning every cell has the same instructions, yet they make different cells.
+
+Important diseases, such as cancers, are directly related with the expression of the genome. Since they are dividing without control, there must be some mutations that can affect the regulation. The mutations occur during replication, age and different environmental causes. Some mutations affect genes, such as those that control cell division, that may induce the cancer.
+
+We transcribe the exons from the genome iself, then we have RNA that will be translated into proteins; at least most of the times. The central dogma of molecular biology has since proven as faux. The information flow is actually more complex, since proteins can affect the genome, which thereby affects all the transcription and translation of the genes and proteins. Proteins can self regulate or regulate other proteins, meaning the genes affect proteins and viceversa. 
+
+# Sequencing
+
+We determine the mutations, the exons, the whole genomic data with sequencing. The bases per run now yield in the millions per run, while some years ago it was merely some couple hundreds. The whole genomics allow us to see and gather more information and create data sets from a myriad of sources. The cost has also decreased exponentially, so there can be more sequencing than ever before. The data is now stored in different archives and everyone has their own way of analyzing and storing, such as NCBI, TCGA, etc. 
+
+# What is Genomics?
+
