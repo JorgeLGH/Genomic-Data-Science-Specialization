@@ -17,18 +17,45 @@ output:
   word_document:
     toc: yes
 ---
+# Overview
 
-# Why Genomics?
+## Why Genomics?
 
 Genomics is the study of the genomes within the living organisms. Everyone and every living thing has a genome, but we're very similar even though we are not so different genomically speaking. Many traits of the living organisms are determined by the genomes, since our development is coded by the genome itself. The same code can make all the cells within a single genome, meaning every cell has the same instructions, yet they make different cells.
 
 Important diseases, such as cancers, are directly related with the expression of the genome. Since they are dividing without control, there must be some mutations that can affect the regulation. The mutations occur during replication, age and different environmental causes. Some mutations affect genes, such as those that control cell division, that may induce the cancer.
 
-We transcribe the exons from the genome iself, then we have RNA that will be translated into proteins; at least most of the times. The central dogma of molecular biology has since proven as faux. The information flow is actually more complex, since proteins can affect the genome, which thereby affects all the transcription and translation of the genes and proteins. Proteins can self regulate or regulate other proteins, meaning the genes affect proteins and viceversa. 
+We transcribe the exons from the genome itself, then we have RNA that will be translated into proteins; at least most of the times. The central dogma of molecular biology has since proven as faux. The information flow is actually more complex, since proteins can affect the genome, which thereby affects all the transcription and translation of the genes and proteins. Proteins can self regulate or regulate other proteins, meaning the genes affect proteins and viceversa. 
 
-# Sequencing
+## Sequencing
 
 We determine the mutations, the exons, the whole genomic data with sequencing. The bases per run now yield in the millions per run, while some years ago it was merely some couple hundreds. The whole genomics allow us to see and gather more information and create data sets from a myriad of sources. The cost has also decreased exponentially, so there can be more sequencing than ever before. The data is now stored in different archives and everyone has their own way of analyzing and storing, such as NCBI, TCGA, etc. 
 
-# What is Genomics?
+## What is Genomics?
+
+The study of genomes. The genome is the complete genomic information within the organism. The structure of a genome, is a chain of nucleotides; they are divided in chromosomes. In case of humans we have 23 pairs of chromosomes. The common structure is the centromere and the telomeres at the end. We want to know what the genome sequences, meaning all the functions and the products it may code for, such as proteins and tissues. We can also evaluate of the genomes' evolution throughout time. Most of the changes are small between generations among species, but we also share a big part of the chromosome information with all organisms since we have similar necessities, such as replication. The definition may also relate to genes, which are elements within the genomes that may or may not, code for products. 
+
+We distinguish genomics from biology and genetics may be synthesized with the scope. Genomics focuses on all genes in a genome, yields large amounts of information and has lots of computational work for analysis. Genetics is more focused on a handful of genes and has low output of information and the analysis is not as laborious. 
+
+## What is Genomic Data Science?
+
+Is is comprised by biology, statistics and computer science. We start off with subjects or samples, from which we collect other samples, such as cells; we send them to the lab and them we send them to sequence it at certain labs. When we have the reads, if available, we align the reads to a reference genome and sort of tell the differences. We then publish the data and may also analyse with statistics and other methods. 
+
+We have to start with our experimental design. Number of samples, sampling, sequencing, etc. When we align and assemble the genomes we can look for mutations, differences, presence, etc. Pre-processing and normalization is a fundamental step since we can have biases due to the technologies themselves such as the sequencing or the sampling. After, we use statistics and techniques such as machine learning to obtain more information, to actually gain knowledge and make conclusions. The development of software is an important part of data science and bioinformatics in it of itself. Population genomics is an interesting branch, as we can follow a group of subjects and understand, for example, why some traits are expressed or why some have some inclinations to have certain diseases. Integrative genomics collect different experiments and types of samples, measurements, and data that are integrated into actual representations that yield more insightful views of what is actually happening. 
+
+# Molecular Biology
+
+## Just Enough Cell Biology
+
+At the most basic level, we have three domains, Bacteria, Eukaryota, and Archaea. Prokaryotes do not have nucleus, while us, eukaryotes, have them. In eukaryotes, the genetic information is more enclosed, as it is in the nucleus; with important exceptions that are the mitochondria and the chloroplasts. We have cell division due to the cell cycle (mitosis), which is composed multiple phases, ending with the division itself. When the mitosis is being carried out, the genetic information is doubled as both resulting cells have the same genetic information. Not all cells divide and multiply, but some differentiate and do not replicate by themselves, the stem cells are the ones that divide and then mature into different cell types that will have specific functions. 
+
+When sexual reproduction occurs, the meiosis takes place. The cells will not have the same information as in the meiosis recombination occur and the progenitors' information is actually shuffled. The cells have different recombination, when reproduction occur, so the differences between sibling from the same parents have infinite possibilities of recombination and having different traits. 
+
+## Important Molecules in Molecular Biology
+
+Few of the key molecules will be talked about, not all, but some of the most critical molecules that will affect the genomic structure and expression. DNA is comprised of purines and pyrimidines (adenine and guanine; cytosine and thymine). The nucleotides bind A-T C-G, in this case we're only speaking of the DNA. If one strand is known, meaning the sequence of nucleotides, then the opposite strand is also known due to their complementary nature. Almost all genetic information is stored in DNA which is stored, in eukaryotes, in the nucleus. The sense is always read 5' to 3' (positive strand) (3' to 5' is the negative strand). When speaking of RNA, the difference is we have single strands, and the thymine is replaced with thymine. 
+
+In the case of eukaryotes, the DNA is what is inherited from generation to generation and what actually has the mutations and recombination that will make the individuals unique. The proteins, made from amino acids, will have a variety of functions that will be used in the organism. The RNA will be translated into the amino acids that will be stringed into the protein. We have 20 amino acids and a particular order of nucleotides in the RNA molecule code for a stop codon. All coding RNA is read in codons of 3 nucleotides. There are 64 codons, 3 are the stop codons. 
+
+## The Human Genome Project 
 
