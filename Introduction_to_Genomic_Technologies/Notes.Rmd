@@ -59,3 +59,24 @@ In the case of eukaryotes, the DNA is what is inherited from generation to gener
 
 ## The Human Genome Project 
 
+A groundbraking project that started in the late 90's. It was the *Manhattan project* of biology and gained momentum and influence with many scientists. It started in 1989 with NIH's and DOE's support as well as the Sanger Centre in England. It had a goal of 3 billion pasepairs and was a cost of 10 dollars to 1 dollar per base and had a goal to end by 2005. People were opposed as most of the DNA does not code for any protein and people thought it was a waste of time.
+
+In the early 90's the idea was taking chunks of DNA and put them into BACs for sequencing later. The problem was aligning and using the BACs 'cause of the nature of identifying maps to locate the genes in the genome. In 1995, TIGR sequenced the first bacterial genome ever with whole genome sequencing *shotgun*; so in 1998 the race began with Applied Biosystems and Craig Venter and formed Celera Genomics in order to sequence the human genome to get patent from the genomes. Celera would announce they would finish by 2001, as well as the public efforts would publish a *draft* of the genome in the same year; in the 2000 NIH and Celera talked about publishing independently but it never was like that, so everyone *finished* at the same time. 
+
+The genome was to identify all genes, their sequences and try to improve humans' quality of life. The project gave an approximate of the number of human genes, the result was around 30,000-40,000 genes. The estimate was an approximate with wide range of discrepancy. 
+
+## Molecular Biology Structures
+
+The DNA and the cell has structures that help us understand how the cell is governed. The DNA itself is very compressed in histones, or similar proteins, so that the DNA is coiled that will eventually form the chromosomes. When translated, it will relax. We can have repeats of identical sequences in tandem in the same chromosome, or it can be interspersed where the repeats can be dispersed along the chromosome. The structure of a typical mRNA has a cap in the head, a portion of untranslated regions at the 5' and 3' ends respectively, then the coding sequences and finally a poly-a tail that means it is matured. The RNA that results from the DNA may have introns before the maturation, therefore different isoforms of the same splicing of the protein can give different combinations. 
+
+Proteins have structures, they are composed of long chains of amino acids, so that they form different structures. The secondary structure can be helices and sheets. The tertiary structure conforms a 3D structure given by combinations of long chains of amino acids; finally, the quaternary structure is the combination of at least two tertiary structures, giving an even more complex molecule. 
+
+The existence of transcription factors is very important. These determine the behavior of the cells, at least partly, meaning these genes and their protein products can bind to the genes, *manually* regulation the expression of proteins, even themselves. Epigenetics are factors outside the genetic material itself, such as DNA tagged with methylation that can be inherited in cell division, meaning it is not a mutation nor a transcription factor, but can regulate the expression of the genes.
+
+## From Genes to Phenotypes
+
+The genotype is the collect of all the sequences of the genes, which determine how the organism will function and certain traits; phenotype is something that can be *seen* in the organism, other than genotype, and it is, in part, determined by the genotype. A clear example to show the genotype is Mendel's experiments with recessive and dominant genes in certain strains of peas. Different organisms, even from the same species, may have certain mutations or genetic variances that may be present according to geographical locations. Particular traits, or phenotypes, may be sequenced so that the genotype of interesting diseases or phenomena can be analysed and will be checked out for mutations or specific sequences associated with the traits. 
+
+# Measurement Technology
+
+## PCR (Polymerase Chain Reaction)
