@@ -97,7 +97,7 @@ RNAseq is used to observe the *turned on* genes that are being expressed in a ce
 
 ChiPseq was used to cross-link proteins that attach as transcription factors, the molecule is fragmented and we use antibodies that select the proteins in order to *pull down* the proteins; after, we separate the DNA that was attached to the protein and sequence those fragments, yielding promoters or sequences that act as anchors for protein regulation. 
 
-Methylseq is to identify where on the genome, the sequences have methylation. It is an important feature as it is epigenetics. We first split DNA into two aliquots/samples, and then you treat one so that the sequences' cytosines that are not methylated are turned into uracil; then we sequence both and align. 
+Methylseq is to identify where on the genome, the sequences have methylation. It is an important feature as it is epigenetics. We first split DNA into two aliquots/samples, and then you treat one so that the sequences' cytokines that are not methylated are turned into uracil; then we sequence both and align. 
 
 # Computing Technology
 
