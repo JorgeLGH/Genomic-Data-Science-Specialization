@@ -103,3 +103,117 @@ Methylseq is to identify where on the genome, the sequences have methylation. It
 
 ## What is Computer Science
 
+Comprises different activities, we can divide them by theory, systems and applications. When speaking of theory, we speak of what computers can theoretically do. By systems we study the computers, the software, the OS, etc. Applications relate to everything else. We must think computationally, so we need to understand the computer, what it can do and what we can describe for it to do. One of the topics are operating systems, such as Unix and Linux; it is like this due to the nature of the OS, as it manipulates data and process all our programs and data. Programming languages are also of great importance, as they *how we talk to computers*, they define certain terms and meanings so that we tell the computers what to do. Engineering is hard, as coding is not sufficient, it has to be tested in different cases and must work as it is intended no matter the differences. Devices refer to the physical aspects, the hardware; they are controlled bu computers or programs that are controlled with computer science. 
+
+## Algorithms
+
+They are instructions, basically, of doing something. We do not necessarily need a computer to create and execute an algorithm; they described with great detail a step by step process. For example, we can find maximum values from data, sort data by specific criteria. We start with different data types and start acting upon the given information and the set of instructions. Efficiency of algorithms is important, as the amount of data troubles the algorithm; we seek faster algorithms with same results. 
+
+## Memory and Data Structures
+
+Data structures allow us to store data for later processing. Example: we have sequences and get them into memory to store them. We store in efficient ways, we store what is useful in order to be more available to retrieve them later and use them. We store as to keep available and identifiable. We can store in many ways, but normally it is classified and stored in *trees*, *links*, etc. Every piece of information has an address, or pointers, that will be a specific ID so that once we are in the correct place, we can access it. We store with binary language, every piece of text will be represented with values of bytes and bits. When representing DNA, we can use 4 binary combinations, meaning 2 bits to represent each letter of the nucleotides; **A=00**, **c=01**, **G=10**, **T=11**. We can check for patterns in the DNA as to search, for example, for introns and exons; we search for patterns as to generate probabilities for further analysis and later fact checking with real data. 
+
+## Efficiency
+
+It is a key topic in computer science, as big data need to be as fast as it can be in order to actually yield information. We must make as efficient as possible all the algorithms as to get as much information as it possibly can. The idea is to use as less time as it is possible without affecting the performance. We seek to do the same in less time and steps. 
+
+## Software Engineering
+
+It is important as it is critical to analyse the data, how reliable it can be and if it is performing as good as we want. We must know and understand the logic behind the program we are executing, how all the different cases can or cannot be handled with the code at hand. Data is so variable, the software must be robust to withstand different conditions and bid data sets. We must understand the logic as to avoid putting the data into *black boxes*. We can trust software, but we must verify the results, specially with bigger data sets. Not because the program didn't crash, it means it is free of bugs and always correct.
+
+## What is Computational Biology Software
+
+We use it to transform raw data into useful information. We gather data from genomic experiments, specially sequence data. The software transform the reads and sequences, into information and actually help us interpret the raw data that otherwise wouldn't be useful at all. We use work pipelines in order to transform raw data into condensed data from which we draw out our conclusions. The process varies depending on the pipeline, it can be condensed, align, separate, filter, etc. There are hundreds of pipelines, all is designed in order to extract specific information of interest. 
+
+An example is RNA-seq. We take RNA from a cell or cells in order to detect which genes are being turned on and which aren't. We extract RNA and make them into sequences and reads from the sample. The pipeline *Tuxedo* uses `Bowtie2`, `TopHat2`, `Cufflinks`, and `Cuffdiff2`. We start with RNA reads
+and align them to the reference genome (it can be aligned to different exons without introns), assemble them into the original genes and then infer the expression levels of each gene; then you compare it between different data sets and get information. Pipelines get updated and worked on, so it can be better; the *Tuxedo* pipeline has also been updated and uses different algorithms and tools, it is of utter importance to understand the software and keep up to date with the newest and bet tools. Software changes with time, specially now, the differences may be abysmal when comparing the newer generations; either for sequencing or analyzing. Even the data generated by sequencing is changing, so the analysis must do so as well. 
+
+# Data Science Technology
+
+## Why Care About Statistics
+
+It is important when considering genomic data science. It is possible to predict even chemotherapy for personalized therapies with statistic analysis; but it is important due to the veracity of the results that can be yield. We must care about statistics, the nature of results actually has very important implications, even in genomics and data science in every field. We must change the perspective and emphasize that statistics are of utmost importance for science.
+
+## What went Wrong?
+
+In the example of Duke University, where genomic data was used to infer the best possible chemotherapies for the patients, something went wrong. The first, is that the data and the code that was used, was not shared with the rest of the community; is has to be reproducible, but in this case, that wasn't true. Then, the lack of cooperation from the people who were in charge for others to replicate the analysis. The lack of expertise in statistics was also important, as they used silly prediction rules and were false, meaning the model was wrong from the start. The study design was also at fault, with batch effects, meaning the experimental design was initially wrong. The predictions weren't locked down, meaning their predictions were faulty, as the algorithm yielded different results given the day and run of the analysis. 
+
+## The Central Dogma of Statistics
+
+Statistical inference has a central dogma too. Taking the full populations into account most times is not possible, so we use probability to take a sample from the population, and we'd like for it to represent the total population. We the use inference to determine certain traits from our population. How do we quantify the variability from our samples? It is central to inference in statistics. The samples may no longer represent the populations when we try to make our inference. 
+
+## Data Sharing Plans
+
+We must be able to share data with our peers and anyone interested. A data set is composed of four components. 
+
+1. The raw data: It is often the raw sequence reads; it mustn't have changes of any kind.
+2. A tidy set: It has been done some processing for easier access. It has variables in columns, the observations as rows, one table per kind of variable and linking indicators for the columns.
+3. A code book describing each variable and its values in the tidy data set: It must have descriptions like variable names, descriptions, specifications of the variables, variable units and the study's quirks.
+4. An explicit and exact recipe you used to go from 1->2->3: We use a script to create the tidy data.
+
+Without all these components, we can't give precise information to share to others.
+
+## Getting help with statistics
+
+How can we get help in statistics? Learn it! We can learn with online resources such as this course or many other classes. We can use `StackOverflow` and `Cross Validated` to answer specific questions with online communities. We can also hire bioinformaticians, but long term collaborations are better. Some centers have specific departments for this sort of problems and topics. 
+
+## Plotting your Data
+
+Most analysis will have plots in order to visualize and interact with the results and data. We make big data as small as possible and summarize them in order not to lose information, and also transmit the message we want to share. We take the summaries from the data in order to discover certain characteristics from our data. We want for a plot to give as much as information in a clear manner. Graphs that look cool but do not tell much should be avoided. 
+
+## Sample Size and Variability
+
+Experimental design must consider the sample size and the variability of our representative samples that try to describe the total population. The sample size formula regarding money, is as follows $N=\frac{money}{price/measure}$. In reality, we use the power of our samples to determine the probability that if there is a true difference that can be observed in the data set, it will be detected. It depends, for example, on the size of the samples, the variance of each sample (population), and the effect we want to determine. We can determine this, for example, within two groups and with the help of the script. 
+
+```{r}
+# in this example, we see that with 10 replicates in each sample, with these parameters, there's only an 18% chance of detecting the effect
+power.t.test(n=10, delta = 5, sd=10)
+
+# we can also define it by the power we want
+power.t.test(delta=5, sd=10, power = 0.8)
+
+# we can use more information to determine the sizes
+power.t.test(delta = 5, sd=10, power = 0.8, alternative = "one.sided")
+```
+
+The power is a curve, meaning the potential sizes of sample size will have different effects on the power, meaning, the bigger the effect, the easier it gets to detect. A power calculation is hypothetical, as the effect is just imagined, not measured.
+
+The variability in genomic measurement can be described in three measurements.
+
+- Phenotypic variability
+- Measurement error
+- Natural biological variation
+
+There is often a rush when new technologies appear to say they're better and less variable, but that is not always the case. We must always check for the variation within our sample and the natural variation in the populations. 
+
+## Statistical Significance
+
+The idea is to know if observed differences in the samples are *real*. We imply there is a difference in the two, or more, sampled groups; for sample, to compare the mean values of expression in certain genes. To determine a *real*, or significant difference, is the *t-statistic*, which is defined as follows. 
+
+$$
+\frac{\bar{Y}-\bar{X}}{\sqrt{\frac{S^2_Y}{N}+\frac{S^2_X}{M}}}
+$$
+The average of the *Y* values minus the average value of *X* divided by the estimates of the variables of both variables by units of variability. The bigger the difference, it is more likely to exist a real difference. 
+The most common approach is the *p-value*. First, we compare and generate the t-statistic for a sample, the use a permutation test. We randomly scramble the data and calculate the statistic in each iteration, so we get all the statistics from all the random calculations. Then, we compare the observed and the values from all the iterations, we only care for differences, so we check for how many times our scrambled data was bigger than the one we observed.
+
+**P-value:**
+The probability of observing a statistic that extreme if the null hypothesis is true.
+
+**It is not**
+- Probability the null is true
+- Probability the alternative is true
+- A measure of statistical evidence
+
+## Multiple Testing
+
+The tests are faulty by design, since the measure for the t-test is prone to error with each statistic you try to prove. To prevent such false positives, we use error rates. The most common ones are *family wise error rate* and *False discovery rate*. The first one is considered that if we are trying to test many hypothesis, at least one will yield a false positive. The second one is the expected number of false positives, divided by the total discoveries; so it quantifies the error rates of the discoveries. We must interpret each error differently and with different approaches.  
+
+## Study Design, Batch Effects, and Confounding
+
+Confounding, can show correlations that would try to explain certain effects, but in reality is not actually related. The variables will appear as they have an effect, while the meaningful variables that are correlated and latent, do not get reported but still have the effect. The most common confounding is the **batch effect**.
+
+The batch effect can be, for example, when you take samples at different times. There is a confounder with the dates, for example the technology can change, the supplies, the equipment, etc. We can deal with confounders with certain tools such as randomization of the variables. We can also use stratification around known confounders, for example, gender or age, we can use the treated and control groups with combined stratification. It is better to have a balanced, referring sample size, experiment; have many replicas and use control groups. 
+
+
+
+
