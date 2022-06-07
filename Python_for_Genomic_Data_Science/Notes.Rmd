@@ -1,0 +1,54 @@
+---
+title: "Python for Genomic Data Science"
+author: "Jorge Luis Gómez"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    fig_height: 8
+    fig_width: 13
+    number_section: yes
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+  pdf_document:
+    toc: yesT
+  word_document:
+    toc: yes
+---
+# Resources
+
+1. We can work directly with the SandBox service Coursera offers completely free with the course. It is available at [this](https://www.coursera.org/learn/python-genomics/lab-sandbox?path=%2Ftree) location.
+
+2. The official [Python](https://www.python.org) site.
+
+3. A tutorial by Patrick O'Brien named "Beginning Python for Bioinformatics".
+
+4. Introduction to Programming using Python by the Pasteur Institute
+
+5. An interactive site for learning [Python](https://learnpython.org)
+
+6. The book "Think Python" 2nd Edition by Allen B. Downey which can be found [here](Think Python 2nd Edition by Allen B. Downey)
+
+# Module 1
+
+## Overview of Python
+
+The approaches of learning how to program can be as diverse as taking classes, asking for help, read a book, or even read someone else's code. There are some programming strategies we can follow.
+
+- Identify the inputs and data specification
+- Provide all the data and design how and which steps the computer will follow
+- Decide the output you want to have, what we want to be displayed
+- Refine the program and give more details
+- Actually write the program
+
+The more complex programs can be designed with a little more ease if you apply some strategies such as writing a pseudo code. A pseudo code has normal text and semantics, but will try to describe the process our final code will execute.
+
+Python is an actual programming language. It is very popular and is easy to learn compared to other languages. It has efficient data structures and simple object-oriented programming, making it more accessible. A very important feature is that is is an interpreted language, meaning it will not have to compile before executing it: we run it directly from or line of codes; the drawback is that due to the nature of being interpreted, the speed will be an issue.
+
+Python is easy and simple to use, having a more simple and defined syntax that makes it readable; it will also be shorter than other languages. As said before, it is an interpreted language. It has lots of built-in functions and libraries available. It can run regardless of the used OS in the computer. It can be used as an extension language that communicates, for example, with more complex programs in other languages. It can also be used for both large and complex tasks, as well as simple ones. 
+
+
+## First Steps Toward Programming Part 1
+
