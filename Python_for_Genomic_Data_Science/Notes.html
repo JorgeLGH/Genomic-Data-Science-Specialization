@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jorge Luis Gómez" />
 
-<meta name="date" content="2022-06-07" />
+<meta name="date" content="2022-06-15" />
 
 <title>Python for Genomic Data Science</title>
 
@@ -1518,7 +1518,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Python for Genomic Data Science</h1>
 <h4 class="author">Jorge Luis Gómez</h4>
-<h4 class="date">2022-06-07</h4>
+<h4 class="date">2022-06-15</h4>
 
 </div>
 
@@ -1526,9 +1526,18 @@ div.tocify {
 <div id="resources" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Resources</h1>
 <ol style="list-style-type: decimal">
-<li>We can work directly with the SandBox service Coursera offers
+<li><p>We can work directly with the SandBox service Coursera offers
 completely free with the course. It is available at <a href="https://www.coursera.org/learn/python-genomics/lab-sandbox?path=%2Ftree">this</a>
-location.</li>
+location.</p></li>
+<li><p>The official <a href="https://www.python.org">Python</a>
+site.</p></li>
+<li><p>A tutorial by Patrick O’Brien named “Beginning Python for
+Bioinformatics”.</p></li>
+<li><p>Introduction to Programming using Python by the Pasteur
+Institute</p></li>
+<li><p>An interactive site for learning <a href="https://learnpython.org">Python</a></p></li>
+<li><p>The book “Think Python” 2nd Edition by Allen B. Downey which can
+be found <a href="Think%20Python%202nd%20Edition%20by%20Allen%20B.%20Downey">here</a></p></li>
 </ol>
 </div>
 <div id="module-1" class="section level1" number="2">
@@ -1536,6 +1545,331 @@ location.</li>
 <div id="overview-of-python" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Overview of
 Python</h2>
+<p>The approaches of learning how to program can be as diverse as taking
+classes, asking for help, read a book, or even read someone else’s code.
+There are some programming strategies we can follow.</p>
+<ul>
+<li>Identify the inputs and data specification</li>
+<li>Provide all the data and design how and which steps the computer
+will follow</li>
+<li>Decide the output you want to have, what we want to be
+displayed</li>
+<li>Refine the program and give more details</li>
+<li>Actually write the program</li>
+</ul>
+<p>The more complex programs can be designed with a little more ease if
+you apply some strategies such as writing a pseudo code. A pseudo code
+has normal text and semantics, but will try to describe the process our
+final code will execute.</p>
+<p>Python is an actual programming language. It is very popular and it
+is easy to learn compared to other languages. It has efficient data
+structures and simple object-oriented programming, making it more
+accessible. A very important feature is that is is an interpreted
+language, meaning it will not have to compile before executing it; we
+run it directly from our line of code; the drawback is that due to the
+nature of being interpreted, the speed will be an issue.</p>
+<p>Python is easy and simple to use, having a more simple and defined
+syntax that makes it readable; it will also be shorter than other
+languages. As said before, it is an interpreted language. It has lots of
+built-in functions and libraries available. It can run regardless of the
+used OS in the computer. It can be used as an extension language that
+communicates, for example, with more complex programs in other
+languages. It can also be used for both large and complex tasks, as well
+as simple ones.</p>
+</div>
+<div id="first-steps-toward-programming-part-1" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> First Steps Toward
+Programming Part 1</h2>
+<p>We’ll start with the basics, the <code>numbers</code> and
+<code>string</code> data types.</p>
+<p>Firstly, we’ll learn how to use python as a computer, since it has
+some important differences, for example, to the language R.</p>
+<div id="numbers" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Numbers</h3>
+<pre class="python"><code># For adding, we can do it directly
+5+5
+
+# The * means multiplication</code></pre>
+<pre><code>## 10</code></pre>
+<pre class="python"><code>10*2
+
+# Double * represents powers</code></pre>
+<pre><code>## 20</code></pre>
+<pre class="python"><code>10**2
+
+# Double // only yields the integer without the fractional part of a division</code></pre>
+<pre><code>## 100</code></pre>
+<pre class="python"><code>17//3
+
+# The % operator will return just the remainder after a division</code></pre>
+<pre><code>## 5</code></pre>
+<pre class="python"><code>15%2
+
+# Python follows mathematical languages, so that, for example * takes precedence before +,-</code></pre>
+<pre><code>## 1</code></pre>
+<p>Numbers have different types, like integers, which are just round
+numbers; but we can have real numbers with fractions, etc. We can check
+the number types with specific commands in Python.</p>
+<pre class="python"><code># Integers
+type(5)</code></pre>
+<pre><code>## &lt;class &#39;int&#39;&gt;</code></pre>
+<pre class="python"><code># real numbers
+type(3.5) # it will have the name &#39;float&#39; which refers to numbers with fractions</code></pre>
+<pre><code>## &lt;class &#39;float&#39;&gt;</code></pre>
+<pre class="python"><code># complex numbers
+type(3+2j)</code></pre>
+<pre><code>## &lt;class &#39;complex&#39;&gt;</code></pre>
+</div>
+<div id="strings" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Strings</h3>
+<p>They are specific data structures used in genomic sciences since, for
+example, the genomic code is a string of the same 4 different
+characters. We can create strings with single or double quotes like this
+<strong>““,’’ </strong>. The most common use is double quotes when using
+normal speech. To avoid errors with single quotes, for a character not
+to be counted as the end of the string, we add a <strong>/</strong>
+before the character itself. For multiple lines of characters to be
+considered as a single string, we can ad triple quotes before writing,
+and the the same after the lines themselves; each triple quotes on their
+own lines (’’’ ’’’).</p>
+<p>Another interesting thing is the use of escape characters, which give
+special meanings to lines depending on how you use the. For example.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Construct</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>\n</td>
+<td>New line</td>
+</tr>
+<tr class="even">
+<td>\t</td>
+<td>Tab</td>
+</tr>
+<tr class="odd">
+<td>\\</td>
+<td>Backslash</td>
+</tr>
+<tr class="even">
+<td>\”</td>
+<td>Double quote</td>
+</tr>
+</tbody>
+</table>
+<p>In order to print more nicely, we can use the command
+<code>print()</code> in order to produce more readable outputs by
+omitting and enclosing quotes by printing escaped and special
+characters. It can be shown as follows.</p>
+<pre class="python"><code>print(&quot;&quot;&quot; 
+&gt;dna1
+actgactgatgctgctgatgc
+tagctgatcgtagctgc
+&gt;dna2
+tgactgatcgatgctgacttgactgtgac
+&quot;&quot;&quot;)</code></pre>
+<pre><code>##  
+## &gt;dna1
+## actgactgatgctgctgatgc
+## tagctgatcgtagctgc
+## &gt;dna2
+## tgactgatcgatgctgacttgactgtgac</code></pre>
+<p>Without the backslash at the end of the first triple quotes, the end
+of a line is directly included into the string.</p>
+</div>
+<div id="basic-operators" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Basic
+operators</h3>
+<p>We have a myriad of operators for us to manipulate the strings as we
+want.</p>
+<pre class="python"><code># concatenate strings
+&quot;atg&quot;+&quot;ctg&quot;</code></pre>
+<pre><code>## &#39;atgctg&#39;</code></pre>
+<pre class="python"><code># copy/replicate strings
+&quot;atg&quot;*3</code></pre>
+<pre><code>## &#39;atgatgatg&#39;</code></pre>
+<pre class="python"><code># membership: true if first string exist inside the second string
+&quot;atg&quot; in &quot;tatgtcgagtatgctgatatg&quot;</code></pre>
+<pre><code>## True</code></pre>
+<pre class="python"><code># non-membership: true if the first string does not exist in the second one
+&quot;atg&quot; in &quot;my name is luis&quot;</code></pre>
+<pre><code>## False</code></pre>
+</div>
+</div>
+<div id="first-steps-towards-programming-part-2" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> First Steps Towards
+Programming Part 2</h2>
+<div id="variables" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Variables</h3>
+<p>Variables are the <em>storage containers</em> for our data, no matter
+the type or structure. The <strong>=</strong> sign is used to assign a
+value to a variable.</p>
+<pre class="python"><code>codon = &quot;atg&quot;
+
+dna_sequence = &quot;atgctgctgatgtgctga&quot;</code></pre>
+<p>As shown, if if is not order to Python, then it will not return the
+values we assigned to our variables, meaning they exist, but are not
+shown. In the same fashion, typing an unexisting/undefined name of a
+variable will just send an error. We can change the values to the same
+variable, which can overwrite the value, or even copy the value from a
+variable into another.</p>
+<pre class="r"><code>a = 4
+a</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>b = a
+b</code></pre>
+<pre><code>## [1] 4</code></pre>
+<pre class="r"><code>b = b+3
+b</code></pre>
+<pre><code>## [1] 7</code></pre>
+<p>Generally speaking, the name of the variables must have meaningful
+names, so it can be understood by others and yourself in later times.
+Python is case-sensitive, so we must pay attention when defining our
+variables. We have to account that some characters cannot be used in the
+variables’ names, such as special characters and numbers as the first
+character of the variable’s name.</p>
+<p>We can also try to find specific positions or locations of a string
+without having to print the whole string. Indexing refers to selecting
+the character at position <em>x</em> that has been selected. Slicing
+refers to making a substring form the original between the selected
+<em>x</em> and <em>y</em> positions. It is important to note that the
+string in Python, and some other languages, start at number 0 rather
+than 1.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+dna[0]</code></pre>
+<pre><code>## &#39;t&#39;</code></pre>
+<pre class="python"><code>dna[0:3]</code></pre>
+<pre><code>## &#39;tta&#39;</code></pre>
+<pre class="python"><code>dna[:3]</code></pre>
+<pre><code>## &#39;tta&#39;</code></pre>
+<pre class="python"><code>dna[2:]</code></pre>
+<pre><code>## &#39;agctgactgatgcgctagctagctgactgatcg&#39;</code></pre>
+<p>In the previous slicing example, we want to select the first 3
+characters from our string. We may think it would consider the first 4
+characters since we begin in 0, but the 3 at the end of the slice means
+it will take everything <strong>before</strong> the specified end of the
+slice.</p>
+<p>We can also select negative numbers, which start counting from the
+right, meaning the end of the string.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+# the last character
+dna[-1]</code></pre>
+<pre><code>## &#39;g&#39;</code></pre>
+<p>When we wish to know the length of our strings, we can use the
+function <code>len()</code> to directly return the length.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+len(dna)</code></pre>
+<pre><code>## 35</code></pre>
+<p>There are many other functions that can be used for a variety of
+reasons and scenarios, such as <code>type()</code> and
+<code>print()</code>. If any questions arise and we need more
+information about the function, we can simply type
+<code>help(name_of_function)</code> and it will give us more
+information.</p>
+<p>Our variables are objects too, so we can make more with them.
+Specific functions and actions can be performed onto our variables,
+these are called <em>methods</em>. For example, we can use the function
+<code>name_of_variable.count()</code> to count how many times does a
+character repeat itself in the string.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+dna.count(&quot;c&quot;)</code></pre>
+<pre><code>## 8</code></pre>
+<pre class="python"><code>dna.count(&quot;gc&quot;)</code></pre>
+<pre><code>## 5</code></pre>
+<p>Other examples include the change of lower-case to upper-case
+characters and vice-versa. Even finding substring can be done with the
+method <code>.find()</code>, this will yield the position in which the
+specified substring starts in the original, but only the first one; we
+can change where it starts looking with parameters, even starting from
+the end.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+dna.upper()</code></pre>
+<pre><code>## &#39;TTAGCTGACTGATGCGCTAGCTAGCTGACTGATCG&#39;</code></pre>
+<pre class="python"><code>dna.find(&quot;atgc&quot;)</code></pre>
+<pre><code>## 11</code></pre>
+<pre class="python"><code>dna.find(&quot;atcg&quot;,11)</code></pre>
+<pre><code>## 31</code></pre>
+<pre class="python"><code>dna.rfind(&quot;tta&quot;)</code></pre>
+<pre><code>## 0</code></pre>
+<p>Other functions do not modify the string, but analyse what it
+contains and gives us more information. To exemplify, the functions
+<code>.islower()</code> and <code>.isupper()</code> both will tell us if
+our string complies with the rules, in this case, if the string is in
+upper or lower-case letters.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+dna.islower()</code></pre>
+<pre><code>## True</code></pre>
+<pre class="python"><code>dna.isupper()</code></pre>
+<pre><code>## False</code></pre>
+<p>Another useful string method is replacing certain characters for
+others.</p>
+<pre class="python"><code>dna = &quot;ttagctgactgatgcgctagctagctgactgatcg&quot;
+
+dna.replace(&quot;a&quot;,&quot;A&quot;)</code></pre>
+<pre><code>## &#39;ttAgctgActgAtgcgctAgctAgctgActgAtcg&#39;</code></pre>
+</div>
+</div>
+<div id="first-steps-toward-programming-part-3" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> First Steps Toward
+Programming Part 3</h2>
+<p>We’ll make the first program using Python in this lecture. Starting
+from the creation of the pseudo code that will later be translated into
+actual code for us to determine the GC’s concentration in a string.
+First of all, we’ll declare the “dna” variable which will contain the
+sequence in question.</p>
+<pre class="python"><code># read DNA sequence from user
+dna = &quot;atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc&quot;
+
+# count the number of C&#39;s in the DNA sequence
+no_c = dna.count(&quot;c&quot;)
+
+# count the number of G&#39;s in the DNA sequence
+no_g = dna.count(&quot;g&quot;)
+
+# determine the length of the DNA sequence
+dna_len = len(dna)
+
+# compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100
+
+# print the value
+print(gc_percent)</code></pre>
+<pre><code>## 49.01960784313725</code></pre>
+<p>For us to later use the same code again, instead of writing all over
+again, we can execute the code from a file. We write the code in the
+file and use the Python interpreter for it to execute the code as many
+times as we want. The files should have the <strong>.py</strong>
+extension for better location and identification of the Python files in
+the project. For it to run directly as a bash script, we can add the
+special header for our file to be executable.</p>
+<pre><code>#!/usr/bin/python
+
+# read DNA sequence from user
+dna = &quot;atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc&quot;
+
+# count the number of C&#39;s in the DNA sequence
+no_c = dna.count(&quot;c&quot;)
+
+# count the number of G&#39;s in the DNA sequence
+no_g = dna.count(&quot;g&quot;)
+
+# determine the length of the DNA sequence
+dna_len = len(dna)
+
+# compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100
+
+# print the value
+print(gc_percent)</code></pre>
 </div>
 </div>
 
