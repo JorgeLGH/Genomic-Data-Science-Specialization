@@ -45,10 +45,366 @@ The approaches of learning how to program can be as diverse as taking classes, a
 
 The more complex programs can be designed with a little more ease if you apply some strategies such as writing a pseudo code. A pseudo code has normal text and semantics, but will try to describe the process our final code will execute.
 
-Python is an actual programming language. It is very popular and is easy to learn compared to other languages. It has efficient data structures and simple object-oriented programming, making it more accessible. A very important feature is that is is an interpreted language, meaning it will not have to compile before executing it: we run it directly from or line of codes; the drawback is that due to the nature of being interpreted, the speed will be an issue.
+Python is an actual programming language. It is very popular and it is easy to learn compared to other languages. It has efficient data structures and simple object-oriented programming, making it more accessible. A very important feature is that is is an interpreted language, meaning it will not have to compile before executing it; we run it directly from our line of code; the drawback is that due to the nature of being interpreted, the speed will be an issue.
 
 Python is easy and simple to use, having a more simple and defined syntax that makes it readable; it will also be shorter than other languages. As said before, it is an interpreted language. It has lots of built-in functions and libraries available. It can run regardless of the used OS in the computer. It can be used as an extension language that communicates, for example, with more complex programs in other languages. It can also be used for both large and complex tasks, as well as simple ones. 
 
-
 ## First Steps Toward Programming Part 1
+
+We'll start with the basics, the `numbers` and `string` data types.
+
+Firstly, we'll learn how to use python as a computer, since it has some important differences, for example, to the language R. 
+
+### Numbers
+
+```{python}
+# For adding, we can do it directly
+5+5
+```
+
+```{python}
+# The * means multiplication
+10*2
+```
+
+```{python}
+# Double * represents powers
+10**2
+```
+
+```{python}
+# Double // only yields the integer without the fractional part of a division
+17//3
+```
+
+```{python}
+# The % operator will return just the remainder after a division
+15%2
+
+# Python follows mathematical languages, so that, for example * takes precedence before +,-
+```
+
+Numbers have different types, like integers, which are just round numbers; but we can have real numbers with fractions, etc. We can check the number types with specific commands in Python.
+
+```{python}
+# Integers
+type(5)
+```
+
+```{python}
+# real numbers
+type(3.5) # it will have the name 'float' which refers to numbers with fractions
+```
+
+```{python}
+# complex numbers
+type(3+2j)
+```
+
+### Strings
+
+They are specific data structures used in genomic sciences since, for example, the genomic code is a string of the same 4 different characters. We can create strings with single or double quotes like this **"",'' **. The most common use is double quotes when using normal speech. To avoid errors with single quotes, for a character not to be counted as the end of the string, we add a **/** before the character itself. For multiple lines of characters to be considered as a single string, we can ad triple quotes before writing, and the the same after the lines themselves; each triple quotes on their own lines ('''    ''').
+
+Another interesting thing is the use of escape characters, which give special meanings to lines depending on how you use the. For example.
+
+| Construct    | Meaning     |
+| ------------ | ----------- |
+| \\n          | New line    |
+| \\t          | Tab         |
+| \\\          | Backslash   |
+| \\"          | Double quote|
+
+In order to print more nicely, we can use the command `print()` in order to produce more readable outputs by omitting and enclosing quotes by printing escaped and special characters. It can be shown as follows.
+
+```{python}
+print(""" 
+>dna1
+actgactgatgctgctgatgc
+tagctgatcgtagctgc
+>dna2
+tgactgatcgatgctgacttgactgtgac
+""")
+```
+
+Without the backslash at the end of the first triple quotes, the end of a line is directly included into the string. 
+
+### Basic operators
+
+We have a myriad of operators for us to manipulate the strings as we want.
+
+```{python}
+# concatenate strings
+"atg"+"ctg"
+```
+
+```{python}
+# copy/replicate strings
+"atg"*3
+```
+
+```{python}
+# membership: true if first string exist inside the second string
+"atg" in "tatgtcgagtatgctgatatg"
+```
+
+```{python}
+# non-membership: true if the first string does not exist in the second one
+"atg" in "my name is luis"
+```
+
+## First Steps Towards Programming Part 2
+
+### Variables
+
+Variables are the *storage containers* for our data, no matter the type or structure. The **=** sign is used to assign a value to a variable.
+
+```{python}
+codon = "atg"
+
+dna_sequence = "atgctgctgatgtgctga"
+```
+
+As shown, if if is not order to Python, then it will not return the values we assigned to our variables, meaning they exist, but are not shown. In the same fashion, typing an unexisting/undefined name of a variable will just send an error. We can change the values to the same variable, which can overwrite the value, or even copy the value from a variable into another.
+
+```{r}
+a = 4
+a
+
+b = a
+b
+
+b = b+3
+b
+```
+
+Generally speaking, the name of the variables must have meaningful names, so it can be understood by others and yourself in later times. Python is case-sensitive, so we must pay attention when defining our variables. We have to account that some characters cannot be used in the variables' names, such as special characters and numbers as the first character of the variable's name.
+
+We can also try to find specific positions or locations of a string without having to print the whole string. Indexing refers to selecting the character at position *x* that has been selected. Slicing refers to making a substring form the original between the selected *x* and *y* positions. It is important to note that the string in Python, and some other languages, start at number 0 rather than 1.
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+dna[0]
+dna[0:3]
+dna[:3]
+dna[2:]
+```
+
+In the previous slicing example, we want to select the first 3 characters from our string. We may think it would consider the first 4 characters since we begin in 0, but the 3 at the end of the slice means it will take everything **before** the specified end of the slice. 
+
+We can also select negative numbers, which start counting from the right, meaning the end of the string.
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+# the last character
+dna[-1]
+```
+
+When we wish to know the length of our strings, we can use the function `len()` to directly return the length. 
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+len(dna)
+```
+
+There are many other functions that can be used for a variety of reasons and scenarios, such as `type()` and `print()`. If any questions arise and we need more information about the function, we can simply type `help(name_of_function)` and it will give us more information.
+
+Our variables are objects too, so we can make more with them. Specific functions and actions can be performed onto our variables, these are called *methods*. For example, we can use the function `name_of_variable.count()` to count how many times does a character repeat itself in the string.
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+dna.count("c")
+dna.count("gc")
+```
+
+Other examples include the change of lower-case to upper-case characters and vice-versa. Even finding substring can be done with the method `.find()`, this will yield the position in which the specified substring starts in the original, but only the first one; we can change where it starts looking with parameters, even starting from the end.
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+dna.upper()
+
+dna.find("atgc")
+dna.find("atcg",11)
+dna.rfind("tta")
+```
+
+Other functions do not modify the string, but analyse what it contains and gives us more information. To exemplify, the functions `.islower()` and `.isupper()` both will tell us if our string complies with the rules, in this case, if the string is in upper or lower-case letters.
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+dna.islower()
+dna.isupper()
+```
+
+Another useful string method is replacing certain characters for others.
+
+```{python}
+dna = "ttagctgactgatgcgctagctagctgactgatcg"
+
+dna.replace("a","A")
+```
+
+## First Steps Toward Programming Part 3
+
+We'll make the first program using Python in this lecture. Starting from the creation of the pseudo code that will later be translated into actual code for us to determine the GC's concentration in a string. First of all, we'll declare the "dna" variable which will contain the sequence in question.
+
+```{python}
+# read DNA sequence from user
+dna = "atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc"
+```
+
+```{python}
+# count the number of C's in the DNA sequence
+no_c = dna.count("c")
+```
+
+```{python}
+# count the number of G's in the DNA sequence
+no_g = dna.count("g")
+```
+
+```{python}
+# determine the length of the DNA sequence
+dna_len = len(dna)
+```
+
+```{python}
+# compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100
+```
+
+```{python}
+# print the value
+print(gc_percent)
+```
+For a cleaner view, and less decimals and more information at the time of viewing our output, the `print()` function can be of use. Here we have formatting elements of a string, the formatting characters are the **%** and the **f** in this case. The syntaxis is that the symbol **%** refers that a format will follow, then de **5** refers to the total number of digits, then the **.** and then the **3**; in this case it tells Python we only want 3 digits following the dot; finally, the **f** or any letter refers to the type of the value to format.
+
+```{python}
+
+print("The DNA sequence's GC content is %5.3f %%" % gc_percent)
+```
+
+
+For us to later use the same code again, instead of writing all over again, we can execute the code from a file. We write the code in the file and use the Python interpreter for it to execute the code as many times as we want. The files should have the **.py** extension for better location and identification of the Python files in the project. For it to run directly as a bash script, we can add the special header for our file to be executable.
+
+```
+#!/directory_where_python_is/python
+
+# read DNA sequence from user
+dna = "atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc"
+
+# count the number of C's in the DNA sequence
+no_c = dna.count("c")
+
+# count the number of G's in the DNA sequence
+no_g = dna.count("g")
+
+# determine the length of the DNA sequence
+dna_len = len(dna)
+
+# compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100
+
+# print the value
+print(gc_percent)
+```
+We can run the file directly from the interpreter by specifying the location and the name of the file within the prompt.
+
+```
+directory_location_whatever python file_name.py
+
+```
+
+Most probably, the file will have a problem since UNIX won't recognize it as an executable file. To fix this problem, we use the `chmod` command and the name of our file for it to be considered and executable program. There are also ways of executing the file directly from the Python interpreter. All this looks as follows.
+
+```
+chmod a+x file_name.py
+
+directory_location_whatever ./file_name.py
+```
+
+On another note, comments are fundamental to understand what we see and what we tried to achieve in the code. Meaningful names and comments are invaluable for a cleaner and better code. An example looks like this.
+
+```
+#!/directory_where_python_is/python
+
+# multiple lines of comments can be set with triple quotes
+"""
+This is my  first Python program.
+It computes the GC content of a DNA sequence.
+"""
+
+# short comments can be done with the #
+
+# read DNA sequence from user
+dna = "atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc"
+
+# count the number of C's in the DNA sequence
+no_c = dna.count("c")
+
+# count the number of G's in the DNA sequence
+no_g = dna.count("g")
+
+# determine the length of the DNA sequence
+dna_len = len(dna)
+
+# compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100
+
+# print the value
+print(gc_percent)
+```
+## First Steps Toward Programming Part 4
+
+The inputs for our programs may come from different sources. Up until now, the input has been manually given and done by ourselves, but it can be given by a series of sources such as other files or even the users. We can see an example of the latter as follows.
+
+```{python}
+
+# it will wait for the user to write something and will be assigned to the object "dna"
+dna = input("Enter a DNA sequence, please:")
+print(dna)
+```
+
+It is important to know that the input in this case will always give a string type object, we can later convert it as in the example below; but we must always remember it is initially a string.
+
+```{python}
+
+#give a number
+my_number = input("Please enter a number:")
+```
+
+```{python}
+# check for data type
+type(my_number)
+```
+
+```{python}
+# make it into an actual number
+actual_number = int(my_number)
+```
+
+```{python}
+# Check for data type
+type(actual_number)
+```
+
+We have other conversion functions into specific data types. They will be more useful along the way.
+
+| Function               | Description                                  |
+| ---------------------- | -------------------------------------------- |
+| int(x [,base])         | Converts x to an integer                     |
+| float(x)               | Converts x to a floating-point (real) number |
+| complex(real [,imag])  | Creates a complex number                     |
+| str(x)                 | Converts x to a string                       |
+| chr(x)                 | Converts an integer to a character           |
+
+# Module 2
+
+## Data Structures
+
 
