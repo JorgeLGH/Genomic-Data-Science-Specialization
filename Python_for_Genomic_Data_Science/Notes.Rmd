@@ -405,6 +405,446 @@ We have other conversion functions into specific data types. They will be more u
 
 # Module 2
 
-## Data Structures
+## Data Structures Part 1
+
+### Lists
+
+It is an ordered set of values. We can have a list with different data types, not necessarily even numeric. We can make a list into a variable as follows.
+
+```{python}
+
+# we define it with brackets
+gene_exp = ["gene", 5.18e-08, 0.00]
+
+# access individual elements or intervals
+gene_exp[:2]
+```
+
+We can access to different elements as any other variable, and starts with **0** rather than 1 when we start listing. Antoher interesting thing we can do with the list data types, is the modification of specific data within a previously created list.
+
+```{python}
+
+# the original list
+gene_exp = ["gene", 5.18e-08, 0.00]
+
+# replace the element and check it is there
+gene_exp[0] = "lif"
+gene_exp
+```
+
+We must be careful not to convert a string into a list, such as to change nucleotides in a sequence. This will return an error. Strings are **immutable**, unlike lists. 
+
+We can slice the lists, and return just the list with the assigned elements from the original.
+
+```{python}
+# the original list
+gene_exp = ["gene", 5.18e-08, 0.00, 0.00023042347, "twelve"]
+```
+
+```{python}
+# slicing
+gene_exp[-3:] #this will return all the elements after the third to last element in the list
+
+```
+
+We can also replace multiple elements of the list with just one new element and from the range we want, meaning specific locations within the list. It can be seen as follows.
+
+```{python}
+gene_exp
+
+gene_exp[1:3] = [6.09e-02]
+gene_exp
+```
+
+To concatenate lists, we use the **+** sign and create a new list that will have to be assigned to another variable. We can even clear a list by specifying all the positions and assigning nothing, just leave the brackets empty. 
+
+```{python}
+# Concatenate
+list_1 = [234,43243, 0.000023404, "jknwfiujn"]
+
+list_2 = gene_exp
+
+list_1+list_2
+```
+
+```{python}
+# empty a list
+list_3 = list_1
+list_3
+list_3[:] = []
+list_3
+```
+
+To delete specific elements in the list, the function `del` can be used to do this. **This will take effect immeadiately. overwriting the original list without having to re-assign**
+
+```{python}
+list_2
+del list_2[1]
+list_2
+```
+
+To work with lists as objects, we have several methods which yield different results and can be applied differently. Certain methods such as `.extend` can immediately add new elements. Method `.count` helps us count the number of times an element appears in a list. Other useful method is `.reverse`, which, as it is obviously implied, reverses the entire list.
+
+```{python}
+gene_exp
+gene_exp.extend([23123, "hello"])
+gene_exp
+```
+
+```{python}
+gene_exp.count("lif")
+gene_exp.count("gene")
+```
+
+```{python}
+gene_exp
+gene_exp.reverse()
+```
+
+The specific methods called `.append` and `pop` are of particular importance when using lists as stacks; meaning where the last element added is the first element retrieved (the first dish under the pile will be last cleaned, while the last will be the first).
+
+An important difference between the `.append` and `.extend` methods, is that the first one will only add one element at a time, so even if you give a list, it will make it a single element inserted at the end of the list; the latter uses lists as arguments and adds many elements. 
+```{python}
+stack = ["a","b","c","d"]
+```
+
+```{python}
+stack.append("e")
+```
+
+The method `.pop` can be used to retrieve the last element from a list, we pop it out. This method is also very powerful, as it will eliminate the last element immediately, just as the previous methods added elements in the same fashion.
+
+```{python}
+stack
+elem = stack.pop()
+elem
+stack
+```
+
+To sort the elements of a list, we can use different functions, such as `sorted()` or even using the method list, which will directly change the order of the elements in the list. It doesn't have to be numbers, the letters will give priority to capital letters and alphabetical order. 
+
+```{python}
+list_t = [234,235,56,1,23,5]
+
+sorted(list_t)
+
+list_t.sort()
+```
+
+## Data Structures Part 2
+
+### Tuples
+
+A tuple consists of a number of values separated by commas, and is another standard sequence data type, like strings and lists. Their elements cannot be changed, therefore, they are immutable objects. The object can be created directly with or without brackets at the start and the end. They can be manipulated as lists, which can be sliced or indexed and are usually composed of heterogeneous sequence of elements. 
+
+```{python}
+
+t = 1,2,3
+t
+```
+
+### Sets
+
+This are unordered collections with no duplicate elements. They support mathematical operations like unions, intersections and differences. They can be lists with no replicate elements. These are created with the **{}** brackets, and can be used to check for similarities and differences alike.
+
+```{python}
+br_1 = {"gene","DNA","repair","like","math","wisdom"}
+
+br_2 = {"gene","DNA","destroy","dislike","english","wisdom","wisdom"}
+```
+
+```{python}
+# union
+br_1 | br_2
+```
+
+```{python}
+# intersection
+br_1 & br_2
+```
+
+```{python}
+# difference
+br_1 - br_2
+```
+
+### Dictionaries
+
+They can store things we want to look up later. It is an unordered set of key and value pairs, with the requirement that the keys are unique (within the dictionary). We associate values with specific keys for later retrieval. The keys can me any immutable data type and the values can be of any data type. Each key is defined, then we use the **:** to assign the value to the key; each key and its value is separated by a **,**.
+
+```{python}
+TF_motif = {"SP1":"gggcgg", "C/EBP":"attgcgcaat", "ATF":"tgacgtca", "c-Myc":"cacgtg", "Oct-1":"atgcaaat"}
+```
+
+To access a dictionary value within, we use a key within square brackets to obtain the value. Any key that is not annotated will yield an error message. The special word `in` can be used to know if the key is in the dictionary.
+
+```{python}
+TF_motif["ATF"]
+```
+
+We can add new keys and values by simply creating it the same way we search for the value in the dictionary, with the exception we have to give the value of the new key. 
+
+```{python}
+TF_motif
+
+TF_motif["AP-1"] = "tgagtca"
+
+TF_motif
+```
+
+To modify an existing key's value, we do the exact same process as adding a new key and value with the difference that in the squared brackets it should be written the name of the key value to update.
+
+```{python}
+TF_motif
+
+TF_motif["AP-1"] = "tga(g/c)tca"
+
+TF_motif
+```
+
+To delete an existing key, we use the function `del` which will act immediately.
+
+```{python}
+TF_motif
+
+del TF_motif["SP1"]
+
+TF_motif
+```
+
+To add whole dictionaries to the existing one, we can use the method `.update` and add the dictionary with the same rules as writing one from sratch. If there is a duplicate key, Python will select one to keep it from having duplicates.
+
+```{python}
+TF_motif
+
+TF_motif.update({"SP1":"gggcgg", "C/EBP": "attgcgcaat", "Oct-1":"atgcaaa"})
+
+TF_motif
+```
+
+To get a list of all our keys in the dictionary, we use the function `list` with the method `.keys` attached too.
+
+```{python}
+list(TF_motif.keys())
+```
+
+To get the values, we do the same thing with the difference of the used method; in this case we use `.values`.
+
+```{python}
+list(TF_motif.values())
+```
+
+## Ifs and Loops Part 1
+
+Decision making will be specified with statements that evaluate the conditions that are given as input. The conditions will determine the path and may execute different sections of code or even stop the process immediately.
+
+### IF statements
+
+The conditions can be **TRUE** or **FALSE**, depending the conditions and the input we give. This will be evaluated directly by Python and will decide to execute the code or not depending on the conditions.
+
+```{python}
+dna = input("Enter DNA sequence:")
+
+if "n" in dna:
+  nbases = dna.count("n")
+  print("dna sequence has %d undefined bases " % nbases)
+```
+
+The conditions in the if statements are Boolean expressions, meaning they deal in **T** or **F**, no in between. We can have functions and different conditions without the if statement itself, so we can actually work directly with the values.
+
+```{python}
+0>1
+1<0
+len("tgcatgac")<10
+```
+
+There are many expressions and operators that can be used in Boolean expressions.
+
+|Comparison               | Operator |
+| ----------------------- | -------- |
+|Equal                    | ==       |
+|not equal                | !=       |
+|Less than                | <        |
+|Greater than             | >        |
+|Less than or equal to    | <=       |
+|Greater than or equal to | >=       |
+
+```{python}
+"a" == "A"
+"GT" != "AG"
+"A" < "C"
+10+1 == 11
+```
+
+Memberships operators like `in` and `not in` are very useful too to get Boolean values.
+
+```{python}
+dna = "atgctgtgacg"
+
+"n" in dna
+
+"n" not in dna
+```
+
+Now, identity operators can be useful too. They evaluate if variables on either side of the operator point to the same object or not; if we have the same object or not.
+
+```{python}
+alphabet = ["a","c","g","t"]
+
+new_alph = alphabet[:]
+
+new_alph == alphabet
+
+new_alph is alphabet
+```
+
+
+For multiple conditions, the structure of `elif` is way more convenient; but if you only have a single option left, the operator `else` is better. The logical operators such as **AND**, **OR**, and **NOT** are also used in python for Boolean expressions. 
+
+```{python}
+dna = "tgctagcNNNtagctagcnntgactNNngann"
+
+if "n" in dna or "N" in dna:
+  nbases = dna.count("n") + dna.count("N")
+  print("dna sequence has %d undefined bases " % nbases)
+else: 
+  print("dna sequence has no undefined bases")
+```
+
+## Ifs and Loops part 2
+
+They are fundamental pieces in any programming language. It can execute a piece of code over and over again depending on the conditions. We have two basic loops that are used in most professional coding, **FOR** and **WHILE** loops.
+
+### While
+
+These loops will execute the code **while** the conditions remain true, so the conditions must change with each iteration; otherwise it will never get out and will continue to execute forever. 
+
+Example: Given a DNA sequence, find the positions of all canonical donor splice site candidates in the sequence.
+
+```{python}
+dna = "tgctagctagcgtgtgtgtgttagctagtagctagctacncactngactgactgactgatcg"
+
+pos = dna.find("gt",0)
+
+while pos > -1:
+  print("Donor splice site candidate at position %d" %pos)
+  pos = dna.find("gt",pos+1)
+```
+
+### For loops
+
+We iterate over the items of any sequence, like a list or string, in the order that they appear in the sequence.
+
+```{python}
+motifs = ["tagctagctagc","tgcatgctagctagctagctag","tagctagcat"]
+
+for m in motifs:
+  print(m,len(m))
+```
+
+To iterate over sequences of numbers, the function `range()` will facilitate this process. It is important to notice the range function also starts counting from element 0, so that if we ask for the first 4 elements in range 4, this will be the result.
+
+```{python}
+for i in range(4):
+  print(i)
+```
+
+Example: Find if all characters in a given protein sequence are valid amino acids. 
+
+```{python}
+protein = "DVSUDVSVYHHRYQHRSHCRATWTVMMCJJ"
+
+for i in range(len(protein)):
+  if protein[i] not in "ABCDEFGHIKLMPQRSTVWXYZ":
+    print("protein contains invalid amino acid %s at position %d" % (protein[i],i))
+```
+
+To end prematurely a loop, the kyword `break` is used to escape when a certain condition is met.
+
+```{python}
+protein = "DVSDUVSVYHHRYQHRSHCRATWTVMMCJJ"
+
+for i in range(len(protein)):
+  if protein[i] not in "ABCDEFGHIKLMPQRSTVWXYZ":
+    print("this is not a valid protein sequence!")
+    break
+```
+
+To continue the program to the next iteration without actually breaking and leaving the process, we use the `continue` statement. It will continue with the next iteration of the nearest enclosing loop, skipping the rest of the code in the loop. It can improve readability, eliminating some steps and unnecessary indentations.
+
+Example: Delete all invalid amino acid characters from a protein sequence.
+
+```{python}
+protein = "DVSUDVSVYHHRYQHRSHCRATWTVMMCJJ"
+
+corr_prot = ""
+
+for i in range(len(protein)):
+  if protein[i] not in "ABCDEFGHIKLMPQRSTVWXYZ":
+    continue
+  corr_prot = corr_prot+protein[i]
+
+corr_prot
+```
+
+The `else` statement can be used in any loops. It will not execute if a `break` statetment come first.
+
+Example: Find all prime numbers smaller than a given integer.
+
+```{python}
+N = 10
+
+for y in range(2,N):
+  for x in range(2,y):
+    if y % x == 0:
+      print(y, "equals", x, "*", y//x)
+      break
+  else:
+    # loop fell through without finding a factor
+    print(y, "is a prime number")
+```
+
+The `pass` statement is a placeholder, so it does nothing. Not that useful if you know exactly wht you're doing, but it can help when just writing the first draft of the code. 
+
+# Module 3
+
+## Functions Part 1
+
+
+
+```{python}
+mylist=[1,2,2,3,4,5]
+
+d = {}
+result = False
+for x in mylist:
+  if not x in d:
+    d[x]=True
+    continue
+  result = True
+
+print(result)
+print(d)
+
+mylist=[1,2,2,3,4,5]
+
+d = {}
+result = False
+for x in mylist:
+  if x in d:
+    result=True
+    break
+  d[x] = True
+
+print(result)
+print(d)
+```
+
+
+
+
+
+
+
 
 
