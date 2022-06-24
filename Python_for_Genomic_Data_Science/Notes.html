@@ -11,7 +11,7 @@
 
 <meta name="author" content="Jorge Luis Gómez" />
 
-<meta name="date" content="2022-06-15" />
+<meta name="date" content="2022-06-24" />
 
 <title>Python for Genomic Data Science</title>
 
@@ -1518,7 +1518,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Python for Genomic Data Science</h1>
 <h4 class="author">Jorge Luis Gómez</h4>
-<h4 class="date">2022-06-15</h4>
+<h4 class="date">2022-06-24</h4>
 
 </div>
 
@@ -1587,23 +1587,19 @@ some important differences, for example, to the language R.</p>
 <div id="numbers" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Numbers</h3>
 <pre class="python"><code># For adding, we can do it directly
-5+5
-
-# The * means multiplication</code></pre>
+5+5</code></pre>
 <pre><code>## 10</code></pre>
-<pre class="python"><code>10*2
-
-# Double * represents powers</code></pre>
+<pre class="python"><code># The * means multiplication
+10*2</code></pre>
 <pre><code>## 20</code></pre>
-<pre class="python"><code>10**2
-
-# Double // only yields the integer without the fractional part of a division</code></pre>
+<pre class="python"><code># Double * represents powers
+10**2</code></pre>
 <pre><code>## 100</code></pre>
-<pre class="python"><code>17//3
-
-# The % operator will return just the remainder after a division</code></pre>
+<pre class="python"><code># Double // only yields the integer without the fractional part of a division
+17//3</code></pre>
 <pre><code>## 5</code></pre>
-<pre class="python"><code>15%2
+<pre class="python"><code># The % operator will return just the remainder after a division
+15%2
 
 # Python follows mathematical languages, so that, for example * takes precedence before +,-</code></pre>
 <pre><code>## 1</code></pre>
@@ -1827,23 +1823,30 @@ actual code for us to determine the GC’s concentration in a string.
 First of all, we’ll declare the “dna” variable which will contain the
 sequence in question.</p>
 <pre class="python"><code># read DNA sequence from user
-dna = &quot;atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc&quot;
-
-# count the number of C&#39;s in the DNA sequence
-no_c = dna.count(&quot;c&quot;)
-
-# count the number of G&#39;s in the DNA sequence
-no_g = dna.count(&quot;g&quot;)
-
-# determine the length of the DNA sequence
-dna_len = len(dna)
-
-# compute the GC percentage
-gc_percent = (no_c+no_g)/dna_len*100
-
-# print the value
+dna = &quot;atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc&quot;</code></pre>
+<pre class="python"><code># count the number of C&#39;s in the DNA sequence
+no_c = dna.count(&quot;c&quot;)</code></pre>
+<pre class="python"><code># count the number of G&#39;s in the DNA sequence
+no_g = dna.count(&quot;g&quot;)</code></pre>
+<pre class="python"><code># determine the length of the DNA sequence
+dna_len = len(dna)</code></pre>
+<pre class="python"><code># compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100</code></pre>
+<pre class="python"><code># print the value
 print(gc_percent)</code></pre>
 <pre><code>## 49.01960784313725</code></pre>
+<p>For a cleaner view, and less decimals and more information at the
+time of viewing our output, the <code>print()</code> function can be of
+use. Here we have formatting elements of a string, the formatting
+characters are the <strong>%</strong> and the <strong>f</strong> in this
+case. The syntaxis is that the symbol <strong>%</strong> refers that a
+format will follow, then de <strong>5</strong> refers to the total
+number of digits, then the <strong>.</strong> and then the
+<strong>3</strong>; in this case it tells Python we only want 3 digits
+following the dot; finally, the <strong>f</strong> or any letter refers
+to the type of the value to format.</p>
+<pre class="python"><code>print(&quot;The DNA sequence&#39;s GC content is %5.3f %%&quot; % gc_percent)</code></pre>
+<pre><code>## The DNA sequence&#39;s GC content is 49.020 %</code></pre>
 <p>For us to later use the same code again, instead of writing all over
 again, we can execute the code from a file. We write the code in the
 file and use the Python interpreter for it to execute the code as many
@@ -1851,7 +1854,7 @@ times as we want. The files should have the <strong>.py</strong>
 extension for better location and identification of the Python files in
 the project. For it to run directly as a bash script, we can add the
 special header for our file to be executable.</p>
-<pre><code>#!/usr/bin/python
+<pre><code>#!/directory_where_python_is/python
 
 # read DNA sequence from user
 dna = &quot;atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc&quot;
@@ -1870,6 +1873,606 @@ gc_percent = (no_c+no_g)/dna_len*100
 
 # print the value
 print(gc_percent)</code></pre>
+<p>We can run the file directly from the interpreter by specifying the
+location and the name of the file within the prompt.</p>
+<pre><code>directory_location_whatever python file_name.py
+</code></pre>
+<p>Most probably, the file will have a problem since UNIX won’t
+recognize it as an executable file. To fix this problem, we use the
+<code>chmod</code> command and the name of our file for it to be
+considered and executable program. There are also ways of executing the
+file directly from the Python interpreter. All this looks as
+follows.</p>
+<pre><code>chmod a+x file_name.py
+
+directory_location_whatever ./file_name.py</code></pre>
+<p>On another note, comments are fundamental to understand what we see
+and what we tried to achieve in the code. Meaningful names and comments
+are invaluable for a cleaner and better code. An example looks like
+this.</p>
+<pre><code>#!/directory_where_python_is/python
+
+# multiple lines of comments can be set with triple quotes
+&quot;&quot;&quot;
+This is my  first Python program.
+It computes the GC content of a DNA sequence.
+&quot;&quot;&quot;
+
+# short comments can be done with the #
+
+# read DNA sequence from user
+dna = &quot;atcgtgatcgatgctagctagtagctagctgactagtcgatcgatcgtagc&quot;
+
+# count the number of C&#39;s in the DNA sequence
+no_c = dna.count(&quot;c&quot;)
+
+# count the number of G&#39;s in the DNA sequence
+no_g = dna.count(&quot;g&quot;)
+
+# determine the length of the DNA sequence
+dna_len = len(dna)
+
+# compute the GC percentage
+gc_percent = (no_c+no_g)/dna_len*100
+
+# print the value
+print(gc_percent)</code></pre>
+</div>
+<div id="first-steps-toward-programming-part-4" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> First Steps Toward
+Programming Part 4</h2>
+<p>The inputs for our programs may come from different sources. Up until
+now, the input has been manually given and done by ourselves, but it can
+be given by a series of sources such as other files or even the users.
+We can see an example of the latter as follows.</p>
+<pre class="python"><code># it will wait for the user to write something and will be assigned to the object &quot;dna&quot;
+# dna = input(&quot;Enter a DNA sequence, please:&quot;)
+dna = &quot;tgactgactgac&quot;
+print(dna)</code></pre>
+<pre><code>## tgactgactgac</code></pre>
+<p>It is important to know that the input in this case will always give
+a string type object, we can later convert it as in the example below;
+but we must always remember it is initially a string.</p>
+<pre class="python"><code>#give a number
+# my_number = input(&quot;Please enter a number:&quot;)
+my_number = &quot;12&quot;</code></pre>
+<pre class="python"><code># check for data type
+type(my_number)</code></pre>
+<pre><code>## &lt;class &#39;str&#39;&gt;</code></pre>
+<pre class="python"><code># make it into an actual number
+actual_number = int(my_number)</code></pre>
+<pre class="python"><code># Check for data type
+type(actual_number)</code></pre>
+<pre><code>## &lt;class &#39;int&#39;&gt;</code></pre>
+<p>We have other conversion functions into specific data types. They
+will be more useful along the way.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="66%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>int(x [,base])</td>
+<td>Converts x to an integer</td>
+</tr>
+<tr class="even">
+<td>float(x)</td>
+<td>Converts x to a floating-point (real) number</td>
+</tr>
+<tr class="odd">
+<td>complex(real [,imag])</td>
+<td>Creates a complex number</td>
+</tr>
+<tr class="even">
+<td>str(x)</td>
+<td>Converts x to a string</td>
+</tr>
+<tr class="odd">
+<td>chr(x)</td>
+<td>Converts an integer to a character</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="module-2" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Module 2</h1>
+<div id="data-structures-part-1" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Data Structures Part
+1</h2>
+<div id="lists" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Lists</h3>
+<p>It is an ordered set of values. We can have a list with different
+data types, not necessarily even numeric. We can make a list into a
+variable as follows.</p>
+<pre class="python"><code>
+# we define it with brackets
+gene_exp = [&quot;gene&quot;, 5.18e-08, 0.00]
+
+# access individual elements or intervals
+gene_exp[:2]</code></pre>
+<pre><code>## [&#39;gene&#39;, 5.18e-08]</code></pre>
+<p>We can access to different elements as any other variable, and starts
+with <strong>0</strong> rather than 1 when we start listing. Antoher
+interesting thing we can do with the list data types, is the
+modification of specific data within a previously created list.</p>
+<pre class="python"><code>
+# the original list
+gene_exp = [&quot;gene&quot;, 5.18e-08, 0.00]
+
+# replace the element and check it is there
+gene_exp[0] = &quot;lif&quot;
+gene_exp</code></pre>
+<pre><code>## [&#39;lif&#39;, 5.18e-08, 0.0]</code></pre>
+<p>We must be careful not to convert a string into a list, such as to
+change nucleotides in a sequence. This will return an error. Strings are
+<strong>immutable</strong>, unlike lists.</p>
+<p>We can slice the lists, and return just the list with the assigned
+elements from the original.</p>
+<pre class="python"><code># the original list
+gene_exp = [&quot;gene&quot;, 5.18e-08, 0.00, 0.00023042347, &quot;twelve&quot;]</code></pre>
+<pre class="python"><code># slicing
+gene_exp[-3:] #this will return all the elements after the third to last element in the list</code></pre>
+<pre><code>## [0.0, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<p>We can also replace multiple elements of the list with just one new
+element and from the range we want, meaning specific locations within
+the list. It can be seen as follows.</p>
+<pre class="python"><code>gene_exp</code></pre>
+<pre><code>## [&#39;gene&#39;, 5.18e-08, 0.0, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<pre class="python"><code>gene_exp[1:3] = [6.09e-02]
+gene_exp</code></pre>
+<pre><code>## [&#39;gene&#39;, 0.0609, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<p>To concatenate lists, we use the <strong>+</strong> sign and create a
+new list that will have to be assigned to another variable. We can even
+clear a list by specifying all the positions and assigning nothing, just
+leave the brackets empty.</p>
+<pre class="python"><code># Concatenate
+list_1 = [234,43243, 0.000023404, &quot;jknwfiujn&quot;]
+
+list_2 = gene_exp
+
+list_1+list_2</code></pre>
+<pre><code>## [234, 43243, 2.3404e-05, &#39;jknwfiujn&#39;, &#39;gene&#39;, 0.0609, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<pre class="python"><code># empty a list
+list_3 = list_1
+list_3</code></pre>
+<pre><code>## [234, 43243, 2.3404e-05, &#39;jknwfiujn&#39;]</code></pre>
+<pre class="python"><code>list_3[:] = []
+list_3</code></pre>
+<pre><code>## []</code></pre>
+<p>To delete specific elements in the list, the function
+<code>del</code> can be used to do this. <strong>This will take effect
+immeadiately. overwriting the original list without having to
+re-assign</strong></p>
+<pre class="python"><code>list_2</code></pre>
+<pre><code>## [&#39;gene&#39;, 0.0609, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<pre class="python"><code>del list_2[1]
+list_2</code></pre>
+<pre><code>## [&#39;gene&#39;, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<p>To work with lists as objects, we have several methods which yield
+different results and can be applied differently. Certain methods such
+as <code>.extend</code> can immediately add new elements. Method
+<code>.count</code> helps us count the number of times an element
+appears in a list. Other useful method is <code>.reverse</code>, which,
+as it is obviously implied, reverses the entire list.</p>
+<pre class="python"><code>gene_exp</code></pre>
+<pre><code>## [&#39;gene&#39;, 0.00023042347, &#39;twelve&#39;]</code></pre>
+<pre class="python"><code>gene_exp.extend([23123, &quot;hello&quot;])
+gene_exp</code></pre>
+<pre><code>## [&#39;gene&#39;, 0.00023042347, &#39;twelve&#39;, 23123, &#39;hello&#39;]</code></pre>
+<pre class="python"><code>gene_exp.count(&quot;lif&quot;)</code></pre>
+<pre><code>## 0</code></pre>
+<pre class="python"><code>gene_exp.count(&quot;gene&quot;)</code></pre>
+<pre><code>## 1</code></pre>
+<pre class="python"><code>gene_exp</code></pre>
+<pre><code>## [&#39;gene&#39;, 0.00023042347, &#39;twelve&#39;, 23123, &#39;hello&#39;]</code></pre>
+<pre class="python"><code>gene_exp.reverse()</code></pre>
+<p>The specific methods called <code>.append</code> and <code>pop</code>
+are of particular importance when using lists as stacks; meaning where
+the last element added is the first element retrieved (the first dish
+under the pile will be last cleaned, while the last will be the
+first).</p>
+<p>An important difference between the <code>.append</code> and
+<code>.extend</code> methods, is that the first one will only add one
+element at a time, so even if you give a list, it will make it a single
+element inserted at the end of the list; the latter uses lists as
+arguments and adds many elements.</p>
+<pre class="python"><code>stack = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]</code></pre>
+<pre class="python"><code>stack.append(&quot;e&quot;)</code></pre>
+<p>The method <code>.pop</code> can be used to retrieve the last element
+from a list, we pop it out. This method is also very powerful, as it
+will eliminate the last element immediately, just as the previous
+methods added elements in the same fashion.</p>
+<pre class="python"><code>stack</code></pre>
+<pre><code>## [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]</code></pre>
+<pre class="python"><code>elem = stack.pop()
+elem</code></pre>
+<pre><code>## &#39;e&#39;</code></pre>
+<pre class="python"><code>stack</code></pre>
+<pre><code>## [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</code></pre>
+<p>To sort the elements of a list, we can use different functions, such
+as <code>sorted()</code> or even using the method list, which will
+directly change the order of the elements in the list. It doesn’t have
+to be numbers, the letters will give priority to capital letters and
+alphabetical order.</p>
+<pre class="python"><code>list_t = [234,235,56,1,23,5]
+
+sorted(list_t)</code></pre>
+<pre><code>## [1, 5, 23, 56, 234, 235]</code></pre>
+<pre class="python"><code>list_t.sort()</code></pre>
+</div>
+</div>
+<div id="data-structures-part-2" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data Structures Part
+2</h2>
+<div id="tuples" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Tuples</h3>
+<p>A tuple consists of a number of values separated by commas, and is
+another standard sequence data type, like strings and lists. Their
+elements cannot be changed, therefore, they are immutable objects. The
+object can be created directly with or without brackets at the start and
+the end. They can be manipulated as lists, which can be sliced or
+indexed and are usually composed of heterogeneous sequence of
+elements.</p>
+<pre class="python"><code>
+t = 1,2,3
+t</code></pre>
+<pre><code>## (1, 2, 3)</code></pre>
+</div>
+<div id="sets" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Sets</h3>
+<p>This are unordered collections with no duplicate elements. They
+support mathematical operations like unions, intersections and
+differences. They can be lists with no replicate elements. These are
+created with the <strong>{}</strong> brackets, and can be used to check
+for similarities and differences alike.</p>
+<pre class="python"><code>br_1 = {&quot;gene&quot;,&quot;DNA&quot;,&quot;repair&quot;,&quot;like&quot;,&quot;math&quot;,&quot;wisdom&quot;}
+
+br_2 = {&quot;gene&quot;,&quot;DNA&quot;,&quot;destroy&quot;,&quot;dislike&quot;,&quot;english&quot;,&quot;wisdom&quot;,&quot;wisdom&quot;}</code></pre>
+<pre class="python"><code># union
+br_1 | br_2</code></pre>
+<pre><code>## {&#39;repair&#39;, &#39;destroy&#39;, &#39;english&#39;, &#39;wisdom&#39;, &#39;gene&#39;, &#39;math&#39;, &#39;dislike&#39;, &#39;like&#39;, &#39;DNA&#39;}</code></pre>
+<pre class="python"><code># intersection
+br_1 &amp; br_2</code></pre>
+<pre><code>## {&#39;gene&#39;, &#39;DNA&#39;, &#39;wisdom&#39;}</code></pre>
+<pre class="python"><code># difference
+br_1 - br_2</code></pre>
+<pre><code>## {&#39;like&#39;, &#39;math&#39;, &#39;repair&#39;}</code></pre>
+</div>
+<div id="dictionaries" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Dictionaries</h3>
+<p>They can store things we want to look up later. It is an unordered
+set of key and value pairs, with the requirement that the keys are
+unique (within the dictionary). We associate values with specific keys
+for later retrieval. The keys can me any immutable data type and the
+values can be of any data type. Each key is defined, then we use the
+<strong>:</strong> to assign the value to the key; each key and its
+value is separated by a <strong>,</strong>.</p>
+<pre class="python"><code>TF_motif = {&quot;SP1&quot;:&quot;gggcgg&quot;, &quot;C/EBP&quot;:&quot;attgcgcaat&quot;, &quot;ATF&quot;:&quot;tgacgtca&quot;, &quot;c-Myc&quot;:&quot;cacgtg&quot;, &quot;Oct-1&quot;:&quot;atgcaaat&quot;}</code></pre>
+<p>To access a dictionary value within, we use a key within square
+brackets to obtain the value. Any key that is not annotated will yield
+an error message. The special word <code>in</code> can be used to know
+if the key is in the dictionary.</p>
+<pre class="python"><code>TF_motif[&quot;ATF&quot;]</code></pre>
+<pre><code>## &#39;tgacgtca&#39;</code></pre>
+<p>We can add new keys and values by simply creating it the same way we
+search for the value in the dictionary, with the exception we have to
+give the value of the new key.</p>
+<pre class="python"><code>TF_motif</code></pre>
+<pre><code>## {&#39;SP1&#39;: &#39;gggcgg&#39;, &#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;}</code></pre>
+<pre class="python"><code>TF_motif[&quot;AP-1&quot;] = &quot;tgagtca&quot;
+
+TF_motif</code></pre>
+<pre><code>## {&#39;SP1&#39;: &#39;gggcgg&#39;, &#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;, &#39;AP-1&#39;: &#39;tgagtca&#39;}</code></pre>
+<p>To modify an existing key’s value, we do the exact same process as
+adding a new key and value with the difference that in the squared
+brackets it should be written the name of the key value to update.</p>
+<pre class="python"><code>TF_motif</code></pre>
+<pre><code>## {&#39;SP1&#39;: &#39;gggcgg&#39;, &#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;, &#39;AP-1&#39;: &#39;tgagtca&#39;}</code></pre>
+<pre class="python"><code>TF_motif[&quot;AP-1&quot;] = &quot;tga(g/c)tca&quot;
+
+TF_motif</code></pre>
+<pre><code>## {&#39;SP1&#39;: &#39;gggcgg&#39;, &#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;, &#39;AP-1&#39;: &#39;tga(g/c)tca&#39;}</code></pre>
+<p>To delete an existing key, we use the function <code>del</code> which
+will act immediately.</p>
+<pre class="python"><code>TF_motif</code></pre>
+<pre><code>## {&#39;SP1&#39;: &#39;gggcgg&#39;, &#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;, &#39;AP-1&#39;: &#39;tga(g/c)tca&#39;}</code></pre>
+<pre class="python"><code>del TF_motif[&quot;SP1&quot;]
+
+TF_motif</code></pre>
+<pre><code>## {&#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;, &#39;AP-1&#39;: &#39;tga(g/c)tca&#39;}</code></pre>
+<p>To add whole dictionaries to the existing one, we can use the method
+<code>.update</code> and add the dictionary with the same rules as
+writing one from sratch. If there is a duplicate key, Python will select
+one to keep it from having duplicates.</p>
+<pre class="python"><code>TF_motif</code></pre>
+<pre><code>## {&#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaat&#39;, &#39;AP-1&#39;: &#39;tga(g/c)tca&#39;}</code></pre>
+<pre class="python"><code>TF_motif.update({&quot;SP1&quot;:&quot;gggcgg&quot;, &quot;C/EBP&quot;: &quot;attgcgcaat&quot;, &quot;Oct-1&quot;:&quot;atgcaaa&quot;})
+
+TF_motif</code></pre>
+<pre><code>## {&#39;C/EBP&#39;: &#39;attgcgcaat&#39;, &#39;ATF&#39;: &#39;tgacgtca&#39;, &#39;c-Myc&#39;: &#39;cacgtg&#39;, &#39;Oct-1&#39;: &#39;atgcaaa&#39;, &#39;AP-1&#39;: &#39;tga(g/c)tca&#39;, &#39;SP1&#39;: &#39;gggcgg&#39;}</code></pre>
+<p>To get a list of all our keys in the dictionary, we use the function
+<code>list</code> with the method <code>.keys</code> attached too.</p>
+<pre class="python"><code>list(TF_motif.keys())</code></pre>
+<pre><code>## [&#39;C/EBP&#39;, &#39;ATF&#39;, &#39;c-Myc&#39;, &#39;Oct-1&#39;, &#39;AP-1&#39;, &#39;SP1&#39;]</code></pre>
+<p>To get the values, we do the same thing with the difference of the
+used method; in this case we use <code>.values</code>.</p>
+<pre class="python"><code>list(TF_motif.values())</code></pre>
+<pre><code>## [&#39;attgcgcaat&#39;, &#39;tgacgtca&#39;, &#39;cacgtg&#39;, &#39;atgcaaa&#39;, &#39;tga(g/c)tca&#39;, &#39;gggcgg&#39;]</code></pre>
+</div>
+</div>
+<div id="ifs-and-loops-part-1" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Ifs and Loops Part
+1</h2>
+<p>Decision making will be specified with statements that evaluate the
+conditions that are given as input. The conditions will determine the
+path and may execute different sections of code or even stop the process
+immediately.</p>
+<div id="if-statements" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> IF statements</h3>
+<p>The conditions can be <strong>TRUE</strong> or
+<strong>FALSE</strong>, depending the conditions and the input we give.
+This will be evaluated directly by Python and will decide to execute the
+code or not depending on the conditions.</p>
+<pre class="python"><code># dna = input(&quot;Enter DNA sequence:&quot;)
+dna = &quot;ttgactgatggnnntgactgcn&quot;
+
+if &quot;n&quot; in dna:
+  nbases = dna.count(&quot;n&quot;)
+  print(&quot;dna sequence has %d undefined bases &quot; % nbases)</code></pre>
+<pre><code>## dna sequence has 4 undefined bases</code></pre>
+<p>The conditions in the if statements are Boolean expressions, meaning
+they deal in <strong>T</strong> or <strong>F</strong>, no in between. We
+can have functions and different conditions without the if statement
+itself, so we can actually work directly with the values.</p>
+<pre class="python"><code>0&gt;1</code></pre>
+<pre><code>## False</code></pre>
+<pre class="python"><code>1&lt;0</code></pre>
+<pre><code>## False</code></pre>
+<pre class="python"><code>len(&quot;tgcatgac&quot;)&lt;10</code></pre>
+<pre><code>## True</code></pre>
+<p>There are many expressions and operators that can be used in Boolean
+expressions.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equal</td>
+<td>==</td>
+</tr>
+<tr class="even">
+<td>not equal</td>
+<td>!=</td>
+</tr>
+<tr class="odd">
+<td>Less than</td>
+<td>&lt;</td>
+</tr>
+<tr class="even">
+<td>Greater than</td>
+<td>&gt;</td>
+</tr>
+<tr class="odd">
+<td>Less than or equal to</td>
+<td>&lt;=</td>
+</tr>
+<tr class="even">
+<td>Greater than or equal to</td>
+<td>&gt;=</td>
+</tr>
+</tbody>
+</table>
+<pre class="python"><code>&quot;a&quot; == &quot;A&quot;</code></pre>
+<pre><code>## False</code></pre>
+<pre class="python"><code>&quot;GT&quot; != &quot;AG&quot;</code></pre>
+<pre><code>## True</code></pre>
+<pre class="python"><code>&quot;A&quot; &lt; &quot;C&quot;</code></pre>
+<pre><code>## True</code></pre>
+<pre class="python"><code>10+1 == 11</code></pre>
+<pre><code>## True</code></pre>
+<p>Memberships operators like <code>in</code> and <code>not in</code>
+are very useful too to get Boolean values.</p>
+<pre class="python"><code>dna = &quot;atgctgtgacg&quot;
+
+&quot;n&quot; in dna</code></pre>
+<pre><code>## False</code></pre>
+<pre class="python"><code>&quot;n&quot; not in dna</code></pre>
+<pre><code>## True</code></pre>
+<p>Now, identity operators can be useful too. They evaluate if variables
+on either side of the operator point to the same object or not; if we
+have the same object or not.</p>
+<pre class="python"><code>alphabet = [&quot;a&quot;,&quot;c&quot;,&quot;g&quot;,&quot;t&quot;]
+
+new_alph = alphabet[:]
+
+new_alph == alphabet</code></pre>
+<pre><code>## True</code></pre>
+<pre class="python"><code>new_alph is alphabet</code></pre>
+<pre><code>## False</code></pre>
+<p>For multiple conditions, the structure of <code>elif</code> is way
+more convenient; but if you only have a single option left, the operator
+<code>else</code> is better. The logical operators such as
+<strong>AND</strong>, <strong>OR</strong>, and <strong>NOT</strong> are
+also used in python for Boolean expressions.</p>
+<pre class="python"><code>dna = &quot;tgctagcNNNtagctagcnntgactNNngann&quot;
+
+if &quot;n&quot; in dna or &quot;N&quot; in dna:
+  nbases = dna.count(&quot;n&quot;) + dna.count(&quot;N&quot;)
+  print(&quot;dna sequence has %d undefined bases &quot; % nbases)
+else: 
+  print(&quot;dna sequence has no undefined bases&quot;)</code></pre>
+<pre><code>## dna sequence has 10 undefined bases</code></pre>
+</div>
+</div>
+<div id="ifs-and-loops-part-2" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Ifs and Loops part
+2</h2>
+<p>They are fundamental pieces in any programming language. It can
+execute a piece of code over and over again depending on the conditions.
+We have two basic loops that are used in most professional coding,
+<strong>FOR</strong> and <strong>WHILE</strong> loops.</p>
+<div id="while" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> While</h3>
+<p>These loops will execute the code <strong>while</strong> the
+conditions remain true, so the conditions must change with each
+iteration; otherwise it will never get out and will continue to execute
+forever.</p>
+<p>Example: Given a DNA sequence, find the positions of all canonical
+donor splice site candidates in the sequence.</p>
+<pre class="python"><code>dna = &quot;tgctagctagcgtgtgtgtgttagctagtagctagctacncactngactgactgactgatcg&quot;
+
+pos = dna.find(&quot;gt&quot;,0)
+
+while pos &gt; -1:
+  print(&quot;Donor splice site candidate at position %d&quot; %pos)
+  pos = dna.find(&quot;gt&quot;,pos+1)</code></pre>
+<pre><code>## Donor splice site candidate at position 11
+## Donor splice site candidate at position 13
+## Donor splice site candidate at position 15
+## Donor splice site candidate at position 17
+## Donor splice site candidate at position 19
+## Donor splice site candidate at position 27</code></pre>
+</div>
+<div id="for-loops" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> For loops</h3>
+<p>We iterate over the items of any sequence, like a list or string, in
+the order that they appear in the sequence.</p>
+<pre class="python"><code>motifs = [&quot;tagctagctagc&quot;,&quot;tgcatgctagctagctagctag&quot;,&quot;tagctagcat&quot;]
+
+for m in motifs:
+  print(m,len(m))</code></pre>
+<pre><code>## tagctagctagc 12
+## tgcatgctagctagctagctag 22
+## tagctagcat 10</code></pre>
+<p>To iterate over sequences of numbers, the function
+<code>range()</code> will facilitate this process. It is important to
+notice the range function also starts counting from element 0, so that
+if we ask for the first 4 elements in range 4, this will be the
+result.</p>
+<pre class="python"><code>for i in range(4):
+  print(i)</code></pre>
+<pre><code>## 0
+## 1
+## 2
+## 3</code></pre>
+<p>Example: Find if all characters in a given protein sequence are valid
+amino acids.</p>
+<pre class="python"><code>protein = &quot;DVSUDVSVYHHRYQHRSHCRATWTVMMCJJ&quot;
+
+for i in range(len(protein)):
+  if protein[i] not in &quot;ABCDEFGHIKLMPQRSTVWXYZ&quot;:
+    print(&quot;protein contains invalid amino acid %s at position %d&quot; % (protein[i],i))</code></pre>
+<pre><code>## protein contains invalid amino acid U at position 3
+## protein contains invalid amino acid J at position 28
+## protein contains invalid amino acid J at position 29</code></pre>
+<p>To end prematurely a loop, the kyword <code>break</code> is used to
+escape when a certain condition is met.</p>
+<pre class="python"><code>protein = &quot;DVSDUVSVYHHRYQHRSHCRATWTVMMCJJ&quot;
+
+for i in range(len(protein)):
+  if protein[i] not in &quot;ABCDEFGHIKLMPQRSTVWXYZ&quot;:
+    print(&quot;this is not a valid protein sequence!&quot;)
+    break</code></pre>
+<pre><code>## this is not a valid protein sequence!</code></pre>
+<p>To continue the program to the next iteration without actually
+breaking and leaving the process, we use the <code>continue</code>
+statement. It will continue with the next iteration of the nearest
+enclosing loop, skipping the rest of the code in the loop. It can
+improve readability, eliminating some steps and unnecessary
+indentations.</p>
+<p>Example: Delete all invalid amino acid characters from a protein
+sequence.</p>
+<pre class="python"><code>protein = &quot;DVSUDVSVYHHRYQHRSHCRATWTVMMCJJ&quot;
+
+corr_prot = &quot;&quot;
+
+for i in range(len(protein)):
+  if protein[i] not in &quot;ABCDEFGHIKLMPQRSTVWXYZ&quot;:
+    continue
+  corr_prot = corr_prot+protein[i]
+
+corr_prot</code></pre>
+<pre><code>## &#39;DVSDVSVYHHRYQHRSHCRATWTVMMC&#39;</code></pre>
+<p>The <code>else</code> statement can be used in any loops. It will not
+execute if a <code>break</code> statetment come first.</p>
+<p>Example: Find all prime numbers smaller than a given integer.</p>
+<pre class="python"><code>N = 10
+
+for y in range(2,N):
+  for x in range(2,y):
+    if y % x == 0:
+      print(y, &quot;equals&quot;, x, &quot;*&quot;, y//x)
+      break
+  else:
+    # loop fell through without finding a factor
+    print(y, &quot;is a prime number&quot;)</code></pre>
+<pre><code>## 2 is a prime number
+## 3 is a prime number
+## 4 equals 2 * 2
+## 5 is a prime number
+## 6 equals 2 * 3
+## 7 is a prime number
+## 8 equals 2 * 4
+## 9 equals 3 * 3</code></pre>
+<p>The <code>pass</code> statement is a placeholder, so it does nothing.
+Not that useful if you know exactly what you’re doing, but it can help
+when just writing the first draft of the code.</p>
+</div>
+</div>
+</div>
+<div id="module-3" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Module 3</h1>
+<div id="functions-part-1" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Functions Part 1</h2>
+<p>They are fundamental to programming. They take a list of argument
+values, perform computations with said values and returns a single, or
+multiple, results. Some functions are <em>built-in</em>, like
+<code>print()</code> or <code>type()</code>, but we can create functions
+of our own design. The latter are called <em>user-defined
+functions</em>. These functions can be called any time we need them,
+therefore re-using the same code again and again; all of this while also
+allowing us to divide the work into sub-steps that are accomplished by
+each function.</p>
+<p>To define a function, we follow a general syntax that will look as
+follows.</p>
+<p><a href="images/Capture-1.webp"></a></p>
+<p>Example: Create a function to compute the GC percentage of a DNA
+sequence.</p>
+<pre class="python"><code># define the function
+# we can see the keyword &quot;def&quot; followed by the name &quot;gc&quot; and the argument &quot;dna&quot;
+def gc(dna): 
+  &quot;this function computes the GC percentage of a DNA sequence&quot;
+  # we have indentation
+  # count the unknown bases
+  nbases = dna.count(&quot;n&quot;)+dna.count(&quot;N&quot;)
+  
+  # count the GC and make the according division
+  gc_perc = float(dna.count(&quot;c&quot;)+dna.count(&quot;C&quot;)+dna.count(&quot;G&quot;)+dna.count(&quot;g&quot;))*100/(len(dna)-nbases)
+  
+  # keep the values
+  return gc_perc
+
+gc(&quot;ttgatgatgtatatatcctatatnnnnnn&quot;)</code></pre>
+<pre><code>## 21.73913043478261</code></pre>
+<p>The Scope of variable declaration refers to a variable inside a
+function that will only exist within the function itself. In the
+previous case, the variable <code>nbases</code> as well as
+<code>gc_perc</code>.</p>
+</div>
+<div id="functions-part-2" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Functions Part 2</h2>
 </div>
 </div>
 
