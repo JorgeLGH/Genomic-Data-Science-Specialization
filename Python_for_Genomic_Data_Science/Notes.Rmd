@@ -285,7 +285,6 @@ print(gc_percent)
 For a cleaner view, and less decimals and more information at the time of viewing our output, the `print()` function can be of use. Here we have formatting elements of a string, the formatting characters are the **%** and the **f** in this case. The syntaxis is that the symbol **%** refers that a format will follow, then de **5** refers to the total number of digits, then the **.** and then the **3**; in this case it tells Python we only want 3 digits following the dot; finally, the **f** or any letter refers to the type of the value to format.
 
 ```{python}
-
 print("The DNA sequence's GC content is %5.3f %%" % gc_percent)
 ```
 
@@ -364,18 +363,18 @@ print(gc_percent)
 The inputs for our programs may come from different sources. Up until now, the input has been manually given and done by ourselves, but it can be given by a series of sources such as other files or even the users. We can see an example of the latter as follows.
 
 ```{python}
-
 # it will wait for the user to write something and will be assigned to the object "dna"
-dna = input("Enter a DNA sequence, please:")
+# dna = input("Enter a DNA sequence, please:")
+dna = "tgactgactgac"
 print(dna)
 ```
 
 It is important to know that the input in this case will always give a string type object, we can later convert it as in the example below; but we must always remember it is initially a string.
 
 ```{python}
-
 #give a number
-my_number = input("Please enter a number:")
+# my_number = input("Please enter a number:")
+my_number = "12"
 ```
 
 ```{python}
@@ -643,7 +642,8 @@ Decision making will be specified with statements that evaluate the conditions t
 The conditions can be **TRUE** or **FALSE**, depending the conditions and the input we give. This will be evaluated directly by Python and will decide to execute the code or not depending on the conditions.
 
 ```{python}
-dna = input("Enter DNA sequence:")
+# dna = input("Enter DNA sequence:")
+dna = "ttgactgatggnnntgactgcn"
 
 if "n" in dna:
   nbases = dna.count("n")
@@ -804,41 +804,46 @@ for y in range(2,N):
     print(y, "is a prime number")
 ```
 
-The `pass` statement is a placeholder, so it does nothing. Not that useful if you know exactly wht you're doing, but it can help when just writing the first draft of the code. 
+The `pass` statement is a placeholder, so it does nothing. Not that useful if you know exactly what you're doing, but it can help when just writing the first draft of the code. 
 
 # Module 3
 
 ## Functions Part 1
 
+They are fundamental to programming. They take a list of argument values, perform computations with said values and returns a single, or multiple, results. Some functions are *built-in*, like `print()` or `type()`, but we can create functions of our own design. The latter are called *user-defined functions*. These functions can be called any time we need them, therefore re-using the same code again and again; all of this while also allowing us to divide the work into sub-steps that are accomplished by each function. 
 
+To define a function, we follow a general syntax that will look as follows.
+
+[](images/Capture-1.webp)
+
+Example: Create a function to compute the GC percentage of a DNA sequence.
 
 ```{python}
-mylist=[1,2,2,3,4,5]
+# define the function
+# we can see the keyword "def" followed by the name "gc" and the argument "dna"
+def gc(dna): 
+  "this function computes the GC percentage of a DNA sequence"
+  # we have indentation
+  # count the unknown bases
+  nbases = dna.count("n")+dna.count("N")
+  
+  # count the GC and make the according division
+  gc_perc = float(dna.count("c")+dna.count("C")+dna.count("G")+dna.count("g"))*100/(len(dna)-nbases)
+  
+  # keep the values
+  return gc_perc
 
-d = {}
-result = False
-for x in mylist:
-  if not x in d:
-    d[x]=True
-    continue
-  result = True
+gc("ttgatgatgtatatatcctatatnnnnnn")
 
-print(result)
-print(d)
-
-mylist=[1,2,2,3,4,5]
-
-d = {}
-result = False
-for x in mylist:
-  if x in d:
-    result=True
-    break
-  d[x] = True
-
-print(result)
-print(d)
 ```
+
+The Scope of variable declaration refers to a variable inside a function that will only exist within the function itself. In the previous case, the variable `nbases` as well as `gc_perc`.
+
+## Functions Part 2
+
+
+
+
 
 
 
