@@ -841,13 +841,428 @@ The Scope of variable declaration refers to a variable inside a function that wi
 
 ## Functions Part 2
 
+We can return True or False values, meaning Boolean functions. They can be used as conditionals such as if or while whenever a condition is too complex.
+
+Example: Write a program that checks if a given DNA sequence contains an in-frame stop codon.
+
+```{python}
+def has_stop(dna):
+  stop_codon_found = False
+  stop_codon = ["tga","tag","taa"]
+  for i in range(0,len(dna),3):
+    codon = dna[i:i+3].lower()
+    if codon in stop_codons:
+      stop_codon_found = True
+      break
+  return stop_codon_found
+```
+
+Now, lets make our function a little more robust. Since codons can be read with a certain degree of variance, meaning the frames might be a little up or down, we will make it so that we have an argument to specify where we start searching for the stop codons.
+
+```{python}
+def has_stop(dna,frame):
+  stop_codon_found = False
+  stop_codons = ["tga","tag","taa"]
+  for i in range(frame,len(dna),3):
+    codon = dna[i:i+3].lower()
+    if codon in stop_codons:
+      stop_codon_found = True
+      break
+  return stop_codon_found
+
+dna = "tctgatgctgatgctagc"
 
 
+has_stop(dna,0)
+has_stop(dna,1)
+has_stop(dna,2)
+```
+
+To assign default values to a function, such as 0 in our previously define function that searches for in-frame stop codons, we can do as follows. We must make sure our value from `frame` is set in the declaring of the function itself. 
+
+```{python}
+def has_stop(dna,frame=0):
+  stop_codon_found = False
+  stop_codons = ["tga","tag","taa"]
+  for i in range(frame,len(dna),3):
+    codon = dna[i:i+3].lower()
+    if codon in stop_codons:
+      stop_codon_found = True
+      break
+  return stop_codon_found
+```
+
+## Functions Part 3
+
+We have passing function arguments, so the arguments are defined in the function. We can assign values with the order that the function is defined, or we can have the arguments named and the directly assign the values.
+
+```{python}
+seq = "tgctagctagc"
+
+has_stop(seq,1)
+has_stop(frame=2, dna=seq)
+```
+
+Example: Write a function to reverse complement a DNA sequence.
+
+```{python}
+seq = "TAGCTAGCTGACTGATCG"
+
+def reverse_string(dna):
+  dna = dna[::-1]
+  return dna
+
+def complement(dna):
+  base_complement = {"A":"T", "C":"G","T":"A","G":"C","a":"t","t":"a","c":"g","g":"c","N":"N","n":"n"}
+  letters = list(dna)
+  letters = [base_complement[base] for base in letters]
+  return "".join(letters)
+
+def reverse_comp(dna):
+  dna = reverse_string(dna)
+  dna = complement(dna)
+  return dna
+
+reverse_comp(seq)
+```
+
+In the previous case we used the method `.join`, but we also have the method `.split`. We can provide the argument by which we want the method to act upon, such as specific characters or even spaces. This will yield either pieces or joined strings. In the example above, we decided we would join the letters with an empty string. 
+
+## Modules and packages
+
+### Modules
+
+Modules are Python files with .py extensions, which contain definitions of functions and variables, usually related to a specific theme or objective. It is a form of grouping related code that make it easier to use and understand. We have created our first module as a sub directory, so we can see how to use modules following these steps. When calling for a module, it will search for built-in module, if it doesn't find it, it will search for a file with the specified name and the correct extension. We can use the `sys.path` variable from the sys built-in module to check the list of all directories where Python looks for files.
+
+```{python}
+import sys
+sys.path
+```
+
+If the module's location doesn't pop up, we can use the method `append` to specify the directory.
+
+```{python}
+# CHANGE TO YOUR OWN LOCATION
+sys.path.append("D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/modules/")
+
+import dnautil
+```
+
+Now, if we tried to use one of the functions we created, such as `gc`, we would find it doesn't work. This is because it doesn't know we are extracting the function from the module, therefore, we must specify it.
+
+```{python}
+dna = "tagctagctagttttttc"
+
+gc(dna)
+
+dnautil.gc(dna)
+```
+
+If we want to avoid using the module's name, we can import all the names that a modules defines, meaning all the functions.
+
+```{python}
+from dnautil import *
+
+dna = "tagctagctagtccccc"
+
+gc(dna)
+```
+
+If we wish to import just a few functions we can select them by writing the functions names in stead of the asterisk.
+
+### Packages
+
+They're basically a way to group modules into a larger collection of modules. Each package is a directory which must contain a special file called **__init__.py**. This file can be empty, but it indicates that the directory it contains is a package, so it can be imported the same way a module can. We can see a package as follows.
+
+```
+bioseq\
+  __init__.py
+  dnautil.py
+  rnautil.py
+  proteinutil.py
+  fasta\
+    __innit__.py
+    fastautil.py
+  fastq\
+    __innit__.py
+    fastqutil.oy
+  ...
+```
+In the example above, we see the package `bioseq` as the main directory, the package itself; followed by all the modules that this package is composed of. We can also import specific modules of the package instead of the whole package.
+
+```
+from bioseq import dnautil
+```
+
+# Module 4
+
+## Communicating with the Outside Part 1
+
+We want to read the data from file outside, sometimes they're quite big; so we don't write the file but read it. We will use the function `open(filename,mode)`. By default our parameter when using this function is `r`, which is the mode to read from a file.
+
+```
+f = open("myfile","r")
+
+f = open("myfile")
+```
+
+To write into an already existing file, we use a different mode, being `a`. It is the way to append to the end of the file if it already exists; meanwhile, to create a file, the mode we use is `w`.
+
+```
+f = open("myfile","a")
+
+f = open("myfile","w")
+```
+We can try to check if the file we're trying to access exists or is located where Python will recognize it. We use the special command `try` and can specify how to handle the situation if the file doesn't exist. This is just to avoid presenting an error message when trying to access an unexisting file. This way it will not crash, but rather just give us the message. 
+
+```{python}
+try:
+  f = open("myfile")
+except IOError:
+  print("The file myfile does not exist!")
+```
+
+Now, we have an existing file with the name `myfile` in the **files** folder within the project. We will do the next examples using files in said folder. 
+```{python}
+# CHANGE TO YOUR FILE LOCATION
+f = open('D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/files/myfile')
+```
+
+We will read in an efficient and fast way the file by looping on it as an object.
+
+```{python}
+for line in f:
+  print(line)
+```
+
+Another way of reading the file is with the method `.seek()` to read the file. With `.seek` we can select a line from which will become the reference point, which in text can only be **0**; after this, we can use the method `.read()` to view the whole file. If we wish to see only the first line, the method `.readline()` can be used. 
+
+```{python}
+f.seek(0)
+f.read()
+```
+
+```{python}
+f.seek(0)
+f.readline()
+```
+
+To write or append lines of text into our file, we must select the file and use the argument `a` when opening the file. After declaring our file as an object, we can now use the method `.write()` to append the desired string. If you're using Python 3.x it will return the length of the appended string. To close the file in order to free up the resources, we can close it, so it is important to use the method `.close` to do so.
+
+```{python}
+f = open('D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/files/myfile', 'a')
+
+f.write('This is a third line of text')
+
+f.close()
+```
+
+## Communicating with the Outside Part 2
+
+We will now work with some FASTA files that contain some real DNA sequences. They have a header and the sequences themselves.
+
+Exercise: Build a dictionary containing all sequences from a FASTA file.
+
+We want to open the file, then read each line one by one, ask it if is a header; if it is, use it as the name of the sequence, if it isn't then update the sequence in the dictionary. When we end the sequence we want to loop until the file ends and we can close the file. 
+
+```{python}
+try:
+  f = open("D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/files/myfile.fa")
+except IOError:
+  print("The file myfile.fa does not exist!")
+```
+
+We will start with the main loop, which will create the dictionary itself.
+
+```{python}
+seqs = {}
+for line in f:
+  # let us discard the newline at the end (if any)
+  line = line.rstrip()
+  #distinguish header from sequence
+  if line[0]=='>': # or line.startswith('>')
+    words=line.split()
+    name=words[0][1:]
+    seqs[name]=''
+  else: # sequence, not a header
+    seqs[name] = seqs[name]+line
+    
+f.close
+```
+
+## Communicating with the Outside Part 3
+
+We can retrieve data from dictionaries! To retrieve the key and the corresponding values from the dictionary, we use the `.items()` method.
+
+```{python}
+for name,seq in seqs.items():
+  print(name,seq)
+```
+
+### Command Line Arguments
+
+Scripts often need to process command line arguments. Suppose a script that parses a FASTA file is called `processfasta.py` and you want to run it on a file whose name we give as an argument in the command line. 
+
+```
+>python processfasta.py myfile.fa
+```
+
+The arguments of the above command are stored in the sys module's argv attribute as a list.
+
+```
+>>> import sys
+
+>>> print(sys.argv)
+
+['processfasta.py','myfile.fa']
+```
+
+```{bash}
+cd files
+python3 processfasta.py myfile.fa
+```
 
 
+Once we are processing arguments in a program, we may even want for some arguments to be optional or some to be required. With this, Python's `getopt` module can help with processing the arguments of sys.argv. Suppose the processfasta.py script reads a FASTA file but only stores in the dictionary the sequences bigger than a given length provided in the command line.
 
+To do this, we must make the usage definition for our processfasta.py file. We can do it directly in bash as follows. We want to define it so users can understand what we're doing. This will define the arguments and what each and every single one does.
 
+```
+def usage():
+  print """
+processfasta.py : reads a Fasta file and builds a dictionary with all sequences bigger than a given length
 
+processfasta.py [-h] [-l <length>] <filename>
+
+-h            print this message
+
+-l <length>   filter all sequences with a length smaller than <length> (default <length>=0)
+
+<filename>    the file has to be in FASTA formal
+
+    """
+```
+
+We will add this in now with Python.
+
+```{python}
+import sys
+import getopt
+def usage():
+  print ("""
+processfasta.py : reads a Fasta file and builds a dictionary with all sequences bigger than a given length
+
+processfasta.py [-h] [-l <length>] <filename>
+
+-h            print this message
+
+-l <length>   filter all sequences with a length smaller than <length> (default <length>=0)
+
+<filename>    the file has to be in FASTA formal
+
+    """)
+
+o, a = getopt.getopt(sys.argv[1:], 'l:h')
+opts = {}
+seqlen=0;
+
+for k,v in o:
+  opts[k] = v
+  
+if '-h' in opts.keys():
+  usage(); sys.exit()
+  
+#if len(a) < 1:
+#  usage(); sys.exit("input fasta file is missing")
+  
+if '-l' in opts.keys():
+  if int(opts['l'])<0 :
+    print("Length of sequence should be positive!!"); sys.exit(0)
+  seqlen=opts['-l']
+```
+
+### Using the System Environment
+
+When we run a script in UNIX environment, standard streams are recognized by a computer program.
+
+- `stdin` is the standard input. It is a stream of data, often text, going into a program. Unless redirected, standard input is expected from the keyboard which started the program. Is is an alternative of opening a file. 
+- `stdout` is standard output. It is the stream where a program writes its output data. Unless redirected, standard output is the text terminal in which initiated the program. 
+- `stderr` (standard error) is another output stream typically used by programs to output error messages or diagnostics. It is a stream independent of standard output and can provide error messages even when `stdout` has been redirected. `stderr` can also be redirected separately. An example is as follows.
+
+```
+my_program_ | my_script.sh 1>program_output.txt 2>error_messages.txt
+```
+
+### Using the System Environment [cont'd]
+
+The sys module in Python provides file handles for the standard input, output, and error. After starting the handle, Python awaits for input, so we can write whatever we want. To close, we need a special character to end the input. 
+
+```
+>>> sys.stdin.read()
+a line
+another line
+
+'a line\nanother line\n'
+```
+**We exit pressing ctrl+d**
+
+In the same way, we can use `stdout` to get our desired output.
+
+```{python}
+sys.stdout.write("Some useful output.\n")
+```
+
+To write the standard error, it is the same formula.
+
+```{python}
+sys.stderr.write("Warning: input file was not found\n")
+```
+
+### Interfacing with External Programs
+
+You can call/execute an external program from your script. It helps us automate certain tasks that would be difficult to do just with Python. We can even use the function `call()` from the default module `subprocess`. This allow us to run an external program.
+
+## Biopython
+
+It is a project with modules and scripts available for  bioinformatics. It is Python-based free software that can be easily downloaded from [here](http://www.biopython.org). It's goal is to make Python easier for any user, as it includes parsers for various bioinformatics file formats, access to online services (NCBI, PubMed, etc.), interfaces to common bioinformatics programs such as BLAST, ClustalW, and others. **It also contains documentation!!**
+
+To check if Biopython is installed, we can try the following code.
+
+```{python}
+import Bio
+```
+
+To check the version we're using, we can use this code line.
+
+```{python}
+print(Bio.__version__)
+```
+
+If it is not downloaded, as it is most likely, we can install it following the [instructions](http://biopython.org/wiki/Download) that are within the site. We can download it no matter the OS and is supported by Python 2 and Python 3 alike. 
+
+To see how Biopython can help us, lets put it into action. We will find out from what species an unknown DNA sequence came from. We will be using an interface in order to access to BLAST. We call it directly via Biopython; we use the specific methods from the module `Blast` that is within the Biopython project. 
+
+```{python}
+from Bio.Blast import NCBIWWW
+fasta_string = open("D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/files/myseq.fa").read()
+result_handle = NCBIWWW.qblast("blastn","nt",fasta_string)
+```
+
+We can search for more options in the `NCBI.qblast()` function by usign the `help()` function.
+
+Now, to actually visualize and format the previous output, we use different functions from Biopython that will help us read the data. It is important to know that the previous object is an .xml file by default, so that is what we're working with.
+
+```
+from Bio.Blast import NCBIXML
+blast_record = NCBIXML.read(result_handle)
+```
+
+Now, for it to be readable, we will be parsing our output. For example, by only showing those matches that comply with a specific E value threshold. We will loop through each of the alignments that actually interest us. 
+
+![](D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/images/script_blast.png)
+![](D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/images/result_blast.png)
+
+For more information on Biopython, we can consult the [cookbook](http://biopython.org/DIST/docs/tutorial/Tutorial.html) and the [FAQ](http://biopython.org/DIST/docs/tutorial/Tutorial.html#htoc5)
 
 
 
