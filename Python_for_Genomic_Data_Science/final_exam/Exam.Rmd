@@ -1,0 +1,151 @@
+---
+title: "Exam"
+author: "Jorge Luis Gómez"
+date: "`r Sys.Date()`"
+output:
+  html_document: 
+    fig_height: 8
+    fig_width: 13
+    number_section: yes
+    theme: cerulean
+    toc: yes
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+  pdf_document:
+    toc: yesT
+  word_document:
+    toc: yes
+---
+# Data
+
+```{python}
+sequences = open("D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/final_exam/data/dna.example.fasta",'r')
+fasta_sequences = sequences.read()
+sequences.close()
+```
+
+# Instructions
+
+Write a Python program that takes as input a file containing DNA sequences in multi-FASTA format, and computes the answers to the following questions. You can choose to write one program with multiple functions to answer these questions, or you can write several programs to address them. We will provide a multi-FASTA file for you, and you will run your program to answer the exam questions. 
+
+While developing your program(s), please use the following example file to test your work: dna.example.fasta
+
+You'll be given a different input file to launch the exam itself.
+
+Here are the questions your program needs to answer. The quiz itself contains the specific multiple-choice questions you need to answer for the file you will be provided.
+
+(1) How many records are in the file? A record in a FASTA file is defined as a single-line header, followed by lines of sequence data. The header line is distinguished from the sequence data by a greater-than (">") symbol in the first column. The word following the ">" symbol is the identifier of the sequence, and the rest of the line is an optional description of the entry. There should be no space between the ">" and the first letter of the identifier. 
+
+```{python}
+a = 0
+for i in range(len(fasta_sequences)):
+  if fasta_sequences[i]==">":
+    a += 1
+
+print(a)
+```
+
+
+(2) What are the lengths of the sequences in the file? What is the longest sequence and what is the shortest sequence? Is there more than one longest or shortest sequence? What are their identifiers? 
+
+```{python}
+try:
+  sequences = open("D:/Rs/Genomic-Data-Science-Specialization/Python_for_Genomic_Data_Science/final_exam/data/dna.example.fasta")
+except IOError:
+  print("The file does not exist!")
+
+seqs = {}
+for line in sequences:
+  line = line.rstrip()
+  if line[0]=='>': # or line.startswith('>')
+    words=line.split()
+    name=words[0][1:]
+    seqs[name]=''
+  else: # sequence, not a header
+    seqs[name] = seqs[name]+line
+    
+sequences.close()
+```
+
+```{python}
+list_seqs = list(seqs.values())
+
+length_seqs = []
+
+for i in list_seqs:
+    length_seqs.append(len(i))
+
+sorted(length_seqs)
+```
+
+```{python}
+list_id = list(seqs.keys())
+
+names_add = {}
+
+for i in range(len(length_seqs)):
+  names_add[list_id[i]] = length_seqs[i]
+
+sorted_values = sorted(names_add.values())
+sorted_dict = {}
+
+for i in sorted_values:
+    for k in names_add.keys():
+        if names_add[k] == i:
+            sorted_dict[k] = names_add[k]
+            break
+          
+print(sorted_dict)
+```
+
+
+
+(3) In molecular biology, a reading frame is a way of dividing the DNA sequence of nucleotides into a set of consecutive, non-overlapping triplets (or codons). Depending on where we start, there are six possible reading frames: three in the forward (5' to 3') direction and three in the reverse (3' to 5'). For instance, the three possible forward reading frames for the sequence AGGTGACACCGCAAGCCTTATATTAGC are: 
+
+AGG TGA CAC CGC AAG CCT TAT ATT AGC
+
+A GGT GAC ACC GCA AGC CTT ATA TTA GC
+
+AG GTG ACA CCG CAA GCC TTA TAT TAG C 
+
+These are called reading frames 1, 2, and 3 respectively. An open reading frame (ORF) is the part of a reading frame that has the potential to encode a protein. It starts with a start codon (ATG), and ends with a stop codon (TAA, TAG or TGA). For instance, ATGAAATAG is an ORF of length 9.
+
+Given an input reading frame on the forward strand (1, 2, or 3) your program should be able to identify all ORFs present in each sequence of the FASTA file, and answer the following questions: what is the length of the longest ORF in the file? What is the identifier of the sequence containing the longest ORF? For a given sequence identifier, what is the longest ORF contained in the sequence represented by that identifier? What is the starting position of the longest ORF in the sequence that contains it? The position should indicate the character number in the sequence. For instance, the following ORF in reading frame 1:
+
+>sequence1
+
+ATGCCCTAG
+
+starts at position 1.
+
+Note that because the following sequence:
+
+>sequence2
+
+ATGAAAAAA
+
+does not have any stop codon in reading frame 1, we do not consider it to be an ORF in reading frame 1. 
+
+```{python}
+sequence_1 = ">sequence1\nATGCCCTAG"
+sequence_2 = ">sequence2\nATGAAAAAA"
+```
+
+```{python}
+def startstop_codon(dna, frame):
+    dna = dna.upper()
+    for i in range(frame, len(dna), 3):
+        codon1 = dna[i:i+3]
+        if codon1 == 'ATG':
+            position1 = i
+            for j in range(position1, len(dna), 3):
+                codon2 = dna[j:j+3]
+                if codon2 in ['TAA', 'TAG', 'TGA']:
+                    position2 = j
+                    yield (position2-position1+3, dna[position1:position2+3])
+                    break
+```
+
+
+(4) A repeat is a substring of a DNA sequence that occurs in multiple copies (more than one) somewhere in the sequence. Although repeats can occur on both the forward and reverse strands of the DNA sequence, we will only consider repeats on the forward strand here. Also we will allow repeats to overlap themselves. For example, the sequence ACACA contains two copies of the sequence ACA - once at position 1 (index 0 in Python), and once at position 3. Given a length n, your program should be able to identify all repeats of length n in all sequences in the FASTA file. Your program should also determine how many times each repeat occurs in the file, and which is the most frequent repeat of a given length.
